@@ -31,3 +31,18 @@ func TestNumIslands(t *testing.T) {
     }
     t.Logf("the num of island is %d\n", NumIslands(grid))
 }
+
+func TestOpenLock(t *testing.T) {
+    deadends := []string{"0201", "0101", "0102", "1212", "2002"}
+    target := "0202"
+    t.Logf("the step is %d\n", OpenLock(deadends, target))
+    deadends = []string{"8888"}
+    target = "0009"
+    t.Logf("the step is %d\n", OpenLock(deadends, target))
+    deadends = []string{"8887", "8889", "8878", "8898", "8788", "8988", "7888", "9888"}
+    target = "8888"
+    t.Logf("the step is %d\n", OpenLock(deadends, target))
+    deadends = []string{"0000"}
+    target = "8888"
+    t.Logf("the step is %d\n", OpenLock(deadends, target))
+}

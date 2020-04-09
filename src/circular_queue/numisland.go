@@ -7,20 +7,20 @@ func NumIslands(grid [][]byte) int {
         for y, yLen := 0, len(grid[x]); y < yLen; y++ {
             if grid[x][y] != '0' {
                 num++
-                idxEnQueue(&exploreQueue, grid, x, y)
+                idxEnQueue2(&exploreQueue, grid, x, y)
                 for !exploreQueue.IsEmpty() {
-                    curX, curY := idxDeQueue(&exploreQueue)
+                    curX, curY := idxDeQueue2(&exploreQueue)
                     if isValidNode(curX - 1, curY, xLen, yLen) {
-                        idxEnQueue(&exploreQueue, grid, curX - 1, curY)
+                        idxEnQueue2(&exploreQueue, grid, curX - 1, curY)
                     }
                     if isValidNode(curX + 1, curY, xLen, yLen) {
-                        idxEnQueue(&exploreQueue, grid, curX + 1, curY)
+                        idxEnQueue2(&exploreQueue, grid, curX + 1, curY)
                     }
                     if isValidNode(curX, curY - 1, xLen, yLen) {
-                        idxEnQueue(&exploreQueue, grid, curX, curY - 1)
+                        idxEnQueue2(&exploreQueue, grid, curX, curY - 1)
                     }
                     if isValidNode(curX, curY + 1, xLen, yLen) {
-                        idxEnQueue(&exploreQueue, grid, curX, curY + 1)
+                        idxEnQueue2(&exploreQueue, grid, curX, curY + 1)
                     }
                 }
             }
@@ -36,7 +36,7 @@ func isValidNode(x int, y int, xMax int, yMax int) bool {
     return false
 }
 
-func idxEnQueue(exploreQueue *MyCircularQueue, grid [][]byte, x int, y int) bool {
+func idxEnQueue2(exploreQueue *MyCircularQueue, grid [][]byte, x int, y int) bool {
     if grid[x][y] != '0' {
         exploreQueue.EnQueue(x)
         exploreQueue.EnQueue(y)
@@ -46,7 +46,7 @@ func idxEnQueue(exploreQueue *MyCircularQueue, grid [][]byte, x int, y int) bool
     return false
 }
 
-func idxDeQueue(exploreQueue *MyCircularQueue) (x int, y int) {
+func idxDeQueue2(exploreQueue *MyCircularQueue) (x int, y int) {
     x = exploreQueue.Front()
     exploreQueue.DeQueue()
     y = exploreQueue.Front()

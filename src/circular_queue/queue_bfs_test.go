@@ -46,3 +46,13 @@ func TestOpenLock(t *testing.T) {
     target = "8888"
     t.Logf("the step is %d\n", OpenLock(deadends, target))
 }
+
+func TestNumSquares(t *testing.T) {
+    t.Logf("num: -1, the min step is %d\n", NumSquares(-1))
+    t.Logf("num: 0, the min step is %d\n", NumSquares(0))
+    t.Logf("num: 1, the min step is %d\n", NumSquares(1))
+    t.Logf("num: 3, the min step is %d\n", NumSquares(3))
+    t.Logf("num: 12, the min step is %d\n", NumSquares(12))
+    t.Logf("num: 13, the min step is %d\n", NumSquares(13))
+    t.Logf("num: 7168, the min step is %d\n", NumSquares(7168))
+}

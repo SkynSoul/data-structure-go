@@ -56,6 +56,17 @@ func TestEvalRPNAsc(t *testing.T) {
     t.Logf("the expression is %v, the result is %d\n", tokens, EvalRPNAsc(tokens))
 }
 
+func TestNumIslands(t *testing.T) {
+    grid := [][]byte {
+        {'1', '1', '1', '1', '0'},
+        {'1', '1', '0', '1', '0'},
+        {'1', '1', '0', '0', '1'},
+        {'1', '1', '0', '1', '1'},
+        {'0', '0', '1', '0', '1'},
+    }
+    t.Logf("the num of island is %d\n", NumIslandsDFS(grid))
+}
+
 func BenchmarkDailyTempWithoutStack(b *testing.B) {
     arrLen := 30000
     temperatures := make([]int, arrLen)
@@ -93,5 +104,19 @@ func BenchmarkEvalRPNAsc(b *testing.B) {
     b.ResetTimer()
     for i := 0; i < b.N; i++ {
         EvalRPNAsc(tokens)
+    }
+}
+
+func BenchmarkNumIslandsDFS(b *testing.B) {
+    grid := [][]byte {
+        {'1', '1', '1', '1', '0'},
+        {'1', '1', '0', '1', '0'},
+        {'1', '1', '0', '0', '1'},
+        {'1', '1', '0', '1', '1'},
+        {'0', '0', '1', '0', '1'},
+    }
+    b.ResetTimer()
+    for i := 0; i < b.N; i++ {
+        NumIslandsDFS(grid)
     }
 }

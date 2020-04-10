@@ -56,3 +56,17 @@ func TestNumSquares(t *testing.T) {
     t.Logf("num: 13, the min step is %d\n", NumSquares(13))
     t.Logf("num: 7168, the min step is %d\n", NumSquares(7168))
 }
+
+func BenchmarkNumIslandsDFS(b *testing.B) {
+    grid := [][]byte {
+        {'1', '1', '1', '1', '0'},
+        {'1', '1', '0', '1', '0'},
+        {'1', '1', '0', '0', '1'},
+        {'1', '1', '0', '1', '1'},
+        {'0', '0', '1', '0', '1'},
+    }
+    b.ResetTimer()
+    for i := 0; i < b.N; i++ {
+        NumIslands(grid)
+    }
+}

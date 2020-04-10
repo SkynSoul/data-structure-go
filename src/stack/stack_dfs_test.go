@@ -38,6 +38,24 @@ func TestDailyTempWithoutStack(t *testing.T) {
     t.Log(DailyTempWithoutStack(temperatures))
 }
 
+func TestEvalRPNDesc(t *testing.T) {
+    tokens := []string{"2", "1", "+", "3", "*"}
+    t.Logf("the expression is %v, the result is %d\n", tokens, EvalRPNDesc(tokens))
+    tokens = []string{"4", "13", "5", "/", "+"}
+    t.Logf("the expression is %v, the result is %d\n", tokens, EvalRPNDesc(tokens))
+    tokens = []string{"10", "6", "9", "3", "+", "-11", "*", "/", "*", "17", "+", "5", "+"}
+    t.Logf("the expression is %v, the result is %d\n", tokens, EvalRPNDesc(tokens))
+}
+
+func TestEvalRPNAsc(t *testing.T) {
+    tokens := []string{"2", "1", "+", "3", "*"}
+    t.Logf("the expression is %v, the result is %d\n", tokens, EvalRPNAsc(tokens))
+    tokens = []string{"4", "13", "5", "/", "+"}
+    t.Logf("the expression is %v, the result is %d\n", tokens, EvalRPNAsc(tokens))
+    tokens = []string{"10", "6", "9", "3", "+", "-11", "*", "/", "*", "17", "+", "5", "+"}
+    t.Logf("the expression is %v, the result is %d\n", tokens, EvalRPNAsc(tokens))
+}
+
 func BenchmarkDailyTempWithoutStack(b *testing.B) {
     arrLen := 30000
     temperatures := make([]int, arrLen)
@@ -59,5 +77,21 @@ func BenchmarkDailyTemperatures(b *testing.B) {
     b.ResetTimer()
     for i := 0; i < b.N; i++ {
         DailyTemperatures(temperatures)
+    }
+}
+
+func BenchmarkEvalRPNDesc(b *testing.B) {
+    tokens := []string{"10", "6", "9", "3", "+", "-11", "*", "/", "*", "17", "+", "5", "+"}
+    b.ResetTimer()
+    for i := 0; i < b.N; i++ {
+        EvalRPNDesc(tokens)
+    }
+}
+
+func BenchmarkEvalRPNAsc(b *testing.B) {
+    tokens := []string{"10", "6", "9", "3", "+", "-11", "*", "/", "*", "17", "+", "5", "+"}
+    b.ResetTimer()
+    for i := 0; i < b.N; i++ {
+        EvalRPNAsc(tokens)
     }
 }

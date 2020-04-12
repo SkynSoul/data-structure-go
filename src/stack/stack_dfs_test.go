@@ -67,6 +67,44 @@ func TestNumIslands(t *testing.T) {
     t.Logf("the num of island is %d\n", NumIslandsDFS(grid))
 }
 
+func TestCloneGraph(t *testing.T) {
+    node1 := &Node{Val: 1}
+    node2 := &Node{Val: 2}
+    node3 := &Node{Val: 3}
+    node4 := &Node{Val: 4}
+    node1.Neighbors = []*Node{node2, node4}
+    node2.Neighbors = []*Node{node1, node3}
+    node3.Neighbors = []*Node{node2, node4}
+    node4.Neighbors = []*Node{node1, node3}
+
+    t.Logf("node1 is %v\n", node1)
+    t.Logf("node2 is %v\n", node1.Neighbors[0])
+    t.Logf("node3 is %v\n", node1.Neighbors[0].Neighbors[1])
+    t.Logf("node4 is %v\n", node1.Neighbors[1])
+
+    cloneNode1 := CloneGraph1(node1)
+    t.Logf("clone method 1:")
+    t.Logf("clone node1 addr is %p\n", cloneNode1)
+    t.Logf("clone node2 addr is %p\n", cloneNode1.Neighbors[0])
+    t.Logf("clone node3 addr is %p\n", cloneNode1.Neighbors[0].Neighbors[1])
+    t.Logf("clone node4 addr is %p\n", cloneNode1.Neighbors[1])
+    t.Logf("clone node1 is %v\n", cloneNode1)
+    t.Logf("clone node2 is %v\n", cloneNode1.Neighbors[0])
+    t.Logf("clone node3 is %v\n", cloneNode1.Neighbors[0].Neighbors[1])
+    t.Logf("clone node4 is %v\n", cloneNode1.Neighbors[1])
+
+    cloneNode1 = CloneGraph1(node1)
+    t.Logf("clone method 2:")
+    t.Logf("clone node1 addr is %p\n", cloneNode1)
+    t.Logf("clone node2 addr is %p\n", cloneNode1.Neighbors[0])
+    t.Logf("clone node3 addr is %p\n", cloneNode1.Neighbors[0].Neighbors[1])
+    t.Logf("clone node4 addr is %p\n", cloneNode1.Neighbors[1])
+    t.Logf("clone node1 is %v\n", cloneNode1)
+    t.Logf("clone node2 is %v\n", cloneNode1.Neighbors[0])
+    t.Logf("clone node3 is %v\n", cloneNode1.Neighbors[0].Neighbors[1])
+    t.Logf("clone node4 is %v\n", cloneNode1.Neighbors[1])
+}
+
 func BenchmarkDailyTempWithoutStack(b *testing.B) {
     arrLen := 30000
     temperatures := make([]int, arrLen)
@@ -118,5 +156,35 @@ func BenchmarkNumIslandsDFS(b *testing.B) {
     b.ResetTimer()
     for i := 0; i < b.N; i++ {
         NumIslandsDFS(grid)
+    }
+}
+
+func BenchmarkCloneGraph1(b *testing.B) {
+    node1 := &Node{Val: 1}
+    node2 := &Node{Val: 2}
+    node3 := &Node{Val: 3}
+    node4 := &Node{Val: 4}
+    node1.Neighbors = []*Node{node2, node4}
+    node2.Neighbors = []*Node{node1, node3}
+    node3.Neighbors = []*Node{node2, node4}
+    node4.Neighbors = []*Node{node1, node3}
+    b.ResetTimer()
+    for i := 0; i < b.N; i++ {
+        CloneGraph1(node1)
+    }
+}
+
+func BenchmarkCloneGraph2(b *testing.B) {
+    node1 := &Node{Val: 1}
+    node2 := &Node{Val: 2}
+    node3 := &Node{Val: 3}
+    node4 := &Node{Val: 4}
+    node1.Neighbors = []*Node{node2, node4}
+    node2.Neighbors = []*Node{node1, node3}
+    node3.Neighbors = []*Node{node2, node4}
+    node4.Neighbors = []*Node{node1, node3}
+    b.ResetTimer()
+    for i := 0; i < b.N; i++ {
+        CloneGraph2(node1)
     }
 }

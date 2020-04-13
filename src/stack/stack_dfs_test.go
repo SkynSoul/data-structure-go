@@ -105,6 +105,11 @@ func TestCloneGraph(t *testing.T) {
     t.Logf("clone node4 is %v\n", cloneNode1.Neighbors[1])
 }
 
+func TestFindTargetSumWays(t *testing.T) {
+    nums := []int{45, 18, 27, 39, 42, 19, 1, 35, 32, 16, 7, 6, 25, 41, 27, 18, 38, 6, 42, 10}
+    t.Logf("the num of ways is: %d\n", FindTargetSumWays4(nums, 49))
+}
+
 func BenchmarkDailyTempWithoutStack(b *testing.B) {
     arrLen := 30000
     temperatures := make([]int, arrLen)
@@ -186,5 +191,33 @@ func BenchmarkCloneGraph2(b *testing.B) {
     b.ResetTimer()
     for i := 0; i < b.N; i++ {
         CloneGraph2(node1)
+    }
+}
+
+func BenchmarkFindTargetSumWays(b *testing.B) {
+    nums := []int{45, 18, 27, 39, 42, 19, 1, 35, 32, 16, 7, 6, 25, 41, 27, 18, 38, 6, 42, 10}
+    for i := 0; i < b.N; i++ {
+        FindTargetSumWays(nums, 49)
+    }
+}
+
+func BenchmarkFindTargetSumWays2(b *testing.B) {
+    nums := []int{45, 18, 27, 39, 42, 19, 1, 35, 32, 16, 7, 6, 25, 41, 27, 18, 38, 6, 42, 10}
+    for i := 0; i < b.N; i++ {
+        FindTargetSumWays2(nums, 49)
+    }
+}
+
+func BenchmarkFindTargetSumWays3(b *testing.B) {
+    nums := []int{45, 18, 27, 39, 42, 19, 1, 35, 32, 16, 7, 6, 25, 41, 27, 18, 38, 6, 42, 10}
+    for i := 0; i < b.N; i++ {
+        FindTargetSumWays3(nums, 49)
+    }
+}
+
+func BenchmarkFindTargetSumWays4(b *testing.B) {
+    nums := []int{45, 18, 27, 39, 42, 19, 1, 35, 32, 16, 7, 6, 25, 41, 27, 18, 38, 6, 42, 10}
+    for i := 0; i < b.N; i++ {
+        FindTargetSumWays4(nums, 49)
     }
 }

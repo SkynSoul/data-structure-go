@@ -110,6 +110,15 @@ func TestFindTargetSumWays(t *testing.T) {
     t.Logf("the num of ways is: %d\n", FindTargetSumWays4(nums, 49))
 }
 
+func TestInOrderTraversal(t *testing.T) {
+    node1 := &TreeNode{Val: 1}
+    node2 := &TreeNode{Val: 2}
+    node3 := &TreeNode{Val: 3}
+    node1.Right = node2
+    node2.Left = node3
+    t.Logf("the ret is %v\n", InOrderTraversal2(node1))
+}
+
 func BenchmarkDailyTempWithoutStack(b *testing.B) {
     arrLen := 30000
     temperatures := make([]int, arrLen)
@@ -219,5 +228,29 @@ func BenchmarkFindTargetSumWays4(b *testing.B) {
     nums := []int{45, 18, 27, 39, 42, 19, 1, 35, 32, 16, 7, 6, 25, 41, 27, 18, 38, 6, 42, 10}
     for i := 0; i < b.N; i++ {
         FindTargetSumWays4(nums, 49)
+    }
+}
+
+func BenchmarkInOrderTraversal(b *testing.B) {
+    node1 := &TreeNode{Val: 1}
+    node2 := &TreeNode{Val: 2}
+    node3 := &TreeNode{Val: 3}
+    node1.Right = node2
+    node2.Left = node3
+    b.ResetTimer()
+    for i := 0; i < b.N; i++ {
+        InOrderTraversal(node1)
+    }
+}
+
+func BenchmarkInOrderTraversal2(b *testing.B) {
+    node1 := &TreeNode{Val: 1}
+    node2 := &TreeNode{Val: 2}
+    node3 := &TreeNode{Val: 3}
+    node1.Right = node2
+    node2.Left = node3
+    b.ResetTimer()
+    for i := 0; i < b.N; i++ {
+        InOrderTraversal2(node1)
     }
 }

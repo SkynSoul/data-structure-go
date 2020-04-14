@@ -41,3 +41,45 @@ func TestFloodFill(t *testing.T) {
 	}
 	t.Logf("after image render: %v\n", FloodFill(image, 1, 1, 2))
 }
+
+func TestUpdateMatrix(t *testing.T) {
+	matrix := [][]int{
+		{0, 0, 0},
+		{0, 1, 0},
+		{0, 0, 0},
+	}
+	t.Logf("update matrix: %v\n", UpdateMatrix2(matrix))
+	
+	matrix = [][]int{
+		{0, 0, 0},
+		{0, 1, 0},
+		{1, 1, 1},
+	}
+	t.Logf("update matrix: %v\n", UpdateMatrix2(matrix))
+}
+
+func BenchmarkUpdateMatrix(b *testing.B) {
+	matrix := [][]int{
+		{0, 0, 0, 1, 1},
+		{0, 1, 0, 1, 0},
+		{1, 1, 1, 1, 0},
+		{1, 0, 1, 1, 0},
+		{1, 1, 0, 1, 0},
+	}
+	for i := 0; i < b.N; i++ {
+		UpdateMatrix(matrix)
+	}
+}
+
+func BenchmarkUpdateMatrix2(b *testing.B) {
+	matrix := [][]int{
+		{0, 0, 0, 1, 1},
+		{0, 1, 0, 1, 0},
+		{1, 1, 1, 1, 0},
+		{1, 0, 1, 1, 0},
+		{1, 1, 0, 1, 0},
+	}
+	for i := 0; i < b.N; i++ {
+		UpdateMatrix2(matrix)
+	}
+}

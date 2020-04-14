@@ -58,6 +58,16 @@ func TestUpdateMatrix(t *testing.T) {
 	t.Logf("update matrix: %v\n", UpdateMatrix2(matrix))
 }
 
+func TestCanVisitAllRooms(t *testing.T) {
+	rooms := [][]int{
+		{1, 3},
+		{3, 0, 1},
+		{2},
+		{0},
+	}
+	t.Logf("the ret is %t\n", CanVisitAllRooms(rooms))
+}
+
 func BenchmarkUpdateMatrix(b *testing.B) {
 	matrix := [][]int{
 		{0, 0, 0, 1, 1},

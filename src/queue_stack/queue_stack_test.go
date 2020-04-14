@@ -32,3 +32,12 @@ func TestDecodeString(t *testing.T) {
 	src = "3[z]2[2[y]pq4[2[jk]e1[f]]]ef"
 	t.Logf("src is %s, ret is %s\n", src, DecodeString(src))
 }
+
+func TestFloodFill(t *testing.T) {
+	image := [][]int{
+		{1, 1, 1},
+		{1, 1, 0},
+		{1, 0, 1},
+	}
+	t.Logf("after image render: %v\n", FloodFill(image, 1, 1, 2))
+}

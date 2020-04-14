@@ -19,3 +19,16 @@ func TestQueueToStack(t *testing.T) {
 	t.Logf("top returns %d\n", myStack.Top())
 	t.Logf("is empty returns %t\n", myStack.Empty())
 }
+
+func TestDecodeString(t *testing.T) {
+	src := "3[a]2[bc]"
+	t.Logf("src is %s, ret is %s\n", src, DecodeString(src))
+	src = "3[a2[c]]"
+	t.Logf("src is %s, ret is %s\n", src, DecodeString(src))
+	src = "2[abc]3[cd]ef"
+	t.Logf("src is %s, ret is %s\n", src, DecodeString(src))
+	src = "15[a]10[bc]"
+	t.Logf("src is %s, ret is %s\n", src, DecodeString(src))
+	src = "3[z]2[2[y]pq4[2[jk]e1[f]]]ef"
+	t.Logf("src is %s, ret is %s\n", src, DecodeString(src))
+}

@@ -24,6 +24,19 @@ func TestDominantIndex(t *testing.T) {
 	t.Logf("the nums is %v, the double max num index is %d\n", nums, DominantIndex(nums))
 }
 
+func TestPlusOne(t *testing.T) {
+	digits := []int{}
+	t.Logf("the nums is %v, plus one ret is %v\n", digits, PlusOne(digits))
+	digits = []int{0}
+	t.Logf("the nums is %v, plus one ret is %v\n", digits, PlusOne(digits))
+	digits = []int{1, 2, 3}
+	t.Logf("the nums is %v, plus one ret is %v\n", digits, PlusOne(digits))
+	digits = []int{9}
+	t.Logf("the nums is %v, plus one ret is %v\n", digits, PlusOne(digits))
+	digits = []int{9, 9, 9}
+	t.Logf("the nums is %v, plus one ret is %v\n", digits, PlusOne(digits))
+}
+
 func BenchmarkPivotIndex(b *testing.B) {
 	nums := []int{1, 7, 3, 6, 5, 6, 8, 79, -10, 54, 38, 8, 79, 1, 648}
 	for i := 0; i < b.N; i++ {

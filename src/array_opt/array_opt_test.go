@@ -17,6 +17,13 @@ func TestPivotIndex(t *testing.T) {
 	t.Logf("the nums is %v, the median index is %d\n", nums, PivotIndex2(nums))
 }
 
+func TestDominantIndex(t *testing.T) {
+	nums := []int{3, 6, 1, 0}
+	t.Logf("the nums is %v, the double max num index is %d\n", nums, DominantIndex(nums))
+	nums = []int{1, 2, 3, 4}
+	t.Logf("the nums is %v, the double max num index is %d\n", nums, DominantIndex(nums))
+}
+
 func BenchmarkPivotIndex(b *testing.B) {
 	nums := []int{1, 7, 3, 6, 5, 6, 8, 79, -10, 54, 38, 8, 79, 1, 648}
 	for i := 0; i < b.N; i++ {

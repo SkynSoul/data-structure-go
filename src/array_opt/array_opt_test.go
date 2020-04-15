@@ -43,11 +43,32 @@ func TestFindDiagonalOrder(t *testing.T) {
 		{4, 5, 6},
 		{7, 8, 9},
 	}
-	t.Logf("diagonal order is: %v\n", FindDiagonalOrder(matrix))
+	t.Logf("diagonal order1 is: %v\n", FindDiagonalOrder(matrix))
+	t.Logf("diagonal order2 is: %v\n", FindDiagonalOrder2(matrix))
+	t.Logf("diagonal order3 is: %v\n", FindDiagonalOrder3(matrix))
 	matrix = [][]int{
 		{1, 2, 3},
 	}
-	t.Logf("diagonal order is: %v\n", FindDiagonalOrder(matrix))
+	t.Logf("diagonal order1 is: %v\n", FindDiagonalOrder(matrix))
+	t.Logf("diagonal order2 is: %v\n", FindDiagonalOrder2(matrix))
+	t.Logf("diagonal order3 is: %v\n", FindDiagonalOrder3(matrix))
+	// 以下两种情况  方法三有问题
+	matrix = [][]int{
+		{1, 2},
+		{4, 5, 6},
+		{7, 8, 9},
+	}
+	t.Logf("diagonal order1 is: %v\n", FindDiagonalOrder(matrix))
+	t.Logf("diagonal order2 is: %v\n", FindDiagonalOrder2(matrix))
+	t.Logf("diagonal order3 is: %v\n", FindDiagonalOrder3(matrix))
+	matrix = [][]int{
+		{1, 2, 3},
+		{4, 5},
+		{7, 8},
+	}
+	t.Logf("diagonal order1 is: %v\n", FindDiagonalOrder(matrix))
+	t.Logf("diagonal order2 is: %v\n", FindDiagonalOrder2(matrix))
+	t.Logf("diagonal order3 is: %v\n", FindDiagonalOrder3(matrix))
 }
 
 func BenchmarkPivotIndex(b *testing.B) {
@@ -84,5 +105,16 @@ func BenchmarkFindDiagonalOrder2(b *testing.B) {
 	}
 	for i := 0; i < b.N; i++ {
 		FindDiagonalOrder2(matrix)
+	}
+}
+
+func BenchmarkFindDiagonalOrder3(b *testing.B) {
+	matrix := [][]int{
+		{1, 2, 3},
+		{4, 5, 6},
+		{7, 8, 9},
+	}
+	for i := 0; i < b.N; i++ {
+		FindDiagonalOrder3(matrix)
 	}
 }

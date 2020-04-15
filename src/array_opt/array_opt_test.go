@@ -37,6 +37,19 @@ func TestPlusOne(t *testing.T) {
 	t.Logf("the nums is %v, plus one ret is %v\n", digits, PlusOne(digits))
 }
 
+func TestFindDiagonalOrder(t *testing.T) {
+	matrix := [][]int{
+		{1, 2, 3},
+		{4, 5, 6},
+		{7, 8, 9},
+	}
+	t.Logf("diagonal order is: %v\n", FindDiagonalOrder(matrix))
+	matrix = [][]int{
+		{1, 2, 3},
+	}
+	t.Logf("diagonal order is: %v\n", FindDiagonalOrder(matrix))
+}
+
 func BenchmarkPivotIndex(b *testing.B) {
 	nums := []int{1, 7, 3, 6, 5, 6, 8, 79, -10, 54, 38, 8, 79, 1, 648}
 	for i := 0; i < b.N; i++ {
@@ -48,5 +61,28 @@ func BenchmarkPivotIndex2(b *testing.B) {
 	nums := []int{1, 7, 3, 6, 5, 6, 8, 79, -10, 54, 38, 8, 79, 1, 648}
 	for i := 0; i < b.N; i++ {
 		PivotIndex2(nums)
+	}
+}
+
+// 测试一下append的内存分配
+func BenchmarkFindDiagonalOrder(b *testing.B) {
+	matrix := [][]int{
+		{1, 2, 3},
+		{4, 5, 6},
+		{7, 8, 9},
+	}
+	for i := 0; i < b.N; i++ {
+		FindDiagonalOrder(matrix)
+	}
+}
+
+func BenchmarkFindDiagonalOrder2(b *testing.B) {
+	matrix := [][]int{
+		{1, 2, 3},
+		{4, 5, 6},
+		{7, 8, 9},
+	}
+	for i := 0; i < b.N; i++ {
+		FindDiagonalOrder2(matrix)
 	}
 }

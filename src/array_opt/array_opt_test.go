@@ -2,6 +2,39 @@ package array_opt
 
 import "testing"
 
+func TestArr(t *testing.T) {
+	// 数组内存分配测试
+	a := [5]int{1, 2, 3}
+	t.Logf("arr: %v, addr: %p, a[:] %p, a[1:] %p, a[:1] %p\n",  a, &a, a[:], a[1:], a[:1])
+	arrSlice := a[:]
+	t.Logf("arrSlice: %v, addr: %p\n",  arrSlice, arrSlice)
+	arrSlice = a[1:]
+	t.Logf("arrSlice: %v, addr: %p\n",  arrSlice, arrSlice)
+	arrSlice = append(a[:], 4)
+	t.Logf("arrSlice: %v, addr: %p\n",  arrSlice, arrSlice)
+	arrSlice = append(arrSlice, a[:]...)
+	t.Logf("arrSlice: %v, addr: %p\n",  arrSlice, arrSlice)
+	
+	arr := []int{1, 2, 3}
+	t.Logf("%p\n",  arr)
+	arr = append(arr, 4)
+	t.Logf("%p\n",  arr)
+	arr = append([]int{0}, arr...)
+	t.Logf("%p\n",  arr)
+	
+	arr = make([]int, 3, 5)
+	arr[0], arr[1], arr[2] = 1, 2, 3
+	t.Logf("%p\n",  arr)
+	arr = append(arr, 4)
+	t.Logf("%p\n",  arr)
+	arr = append(arr, 5)
+	t.Logf("%p\n",  arr)
+	arr = append(arr, 6)
+	t.Logf("%p\n",  arr)
+	arr = append([]int{0}, arr...)
+	t.Logf("%p\n",  arr)
+}
+
 func TestPivotIndex(t *testing.T) {
 	nums := []int{1, 7, 3, 6, 5, 6}
 	t.Logf("the nums is %v, the median index is %d\n", nums, PivotIndex2(nums))

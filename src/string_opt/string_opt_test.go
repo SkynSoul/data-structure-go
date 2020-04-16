@@ -21,3 +21,16 @@ func TestAddBinary(t *testing.T) {
     a, b = "1010001", "1011"
     t.Logf("%s + %s = %s\n", a, b, AddBinary(a, b))
 }
+
+func TestStrStr(t *testing.T) {
+    haystack, needle := "hello", "ll"
+    t.Logf("haystack is %s, needle is %s, the first index is %d\n", haystack, needle, StrStr(haystack, needle))
+    haystack, needle = "aaaaa", "bba"
+    t.Logf("haystack is %s, needle is %s, the first index is %d\n", haystack, needle, StrStr(haystack, needle))
+    haystack, needle = "aaaaa", ""
+    t.Logf("haystack is %s, needle is %s, the first index is %d\n", haystack, needle, StrStr(haystack, needle))
+    haystack, needle = "aaaaa", "a"
+    t.Logf("haystack is %s, needle is %s, the first index is %d\n", haystack, needle, StrStr(haystack, needle))
+    haystack, needle = "", ""
+    t.Logf("haystack is %s, needle is %s, the first index is %d\n", haystack, needle, StrStr(haystack, needle))
+}

@@ -71,6 +71,26 @@ func TestFindDiagonalOrder(t *testing.T) {
 	t.Logf("diagonal order3 is: %v\n", FindDiagonalOrder3(matrix))
 }
 
+func TestSpiralOrder(t *testing.T) {
+	matrix := [][]int{
+		{1, 2, 3},
+		{4, 5, 6},
+		{7, 8, 9},
+	}
+	t.Logf("spiral roder is: %v\n", SpiralOrder(matrix))
+	matrix = [][]int{
+		{1, 2, 3, 4},
+		{5, 6, 7, 8},
+		{9, 10, 11, 12},
+	}
+	t.Logf("spiral roder is: %v\n", SpiralOrder(matrix))
+	matrix = [][]int{
+		{1, 2, 3, 4},
+		{5, 6, 7, 8},
+	}
+	t.Logf("spiral roder is: %v\n", SpiralOrder(matrix))
+}
+
 func BenchmarkPivotIndex(b *testing.B) {
 	nums := []int{1, 7, 3, 6, 5, 6, 8, 79, -10, 54, 38, 8, 79, 1, 648}
 	for i := 0; i < b.N; i++ {

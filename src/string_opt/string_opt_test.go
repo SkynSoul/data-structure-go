@@ -34,3 +34,14 @@ func TestStrStr(t *testing.T) {
     haystack, needle = "", ""
     t.Logf("haystack is %s, needle is %s, the first index is %d\n", haystack, needle, StrStr(haystack, needle))
 }
+
+func TestLongestCommonPrefix(t *testing.T) {
+    strs := []string{"flower", "flow", "flight"}
+    t.Logf("strs is %v, the longest common prefix is %s\n", strs, LongestCommonPrefix(strs))
+    strs = []string{"dog", "racecar", "car"}
+    t.Logf("strs is %v, the longest common prefix is %s\n", strs, LongestCommonPrefix(strs))
+    strs = []string{"car"}
+    t.Logf("strs is %v, the longest common prefix is %s\n", strs, LongestCommonPrefix(strs))
+    strs = []string{"c", "c"}
+    t.Logf("strs is %v, the longest common prefix is %s\n", strs, LongestCommonPrefix(strs))
+}

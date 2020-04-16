@@ -91,6 +91,21 @@ func TestSpiralOrder(t *testing.T) {
 	t.Logf("spiral roder is: %v\n", SpiralOrder(matrix))
 }
 
+func TestGeneratePascalTriangle(t *testing.T) {
+	numRows := 0
+	t.Logf("the row's num is %d, ret is %v\n", numRows, GeneratePascalTriangle(numRows))
+	numRows = 1
+	t.Logf("the row's num is %d, ret is %v\n", numRows, GeneratePascalTriangle(numRows))
+	numRows = 2
+	t.Logf("the row's num is %d, ret is %v\n", numRows, GeneratePascalTriangle(numRows))
+	numRows = 3
+	t.Logf("the row's num is %d, ret is %v\n", numRows, GeneratePascalTriangle(numRows))
+	numRows = 4
+	t.Logf("the row's num is %d, ret is %v\n", numRows, GeneratePascalTriangle(numRows))
+	numRows = 5
+	t.Logf("the row's num is %d, ret is %v\n", numRows, GeneratePascalTriangle(numRows))
+}
+
 func BenchmarkPivotIndex(b *testing.B) {
 	nums := []int{1, 7, 3, 6, 5, 6, 8, 79, -10, 54, 38, 8, 79, 1, 648}
 	for i := 0; i < b.N; i++ {

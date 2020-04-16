@@ -1,6 +1,9 @@
 package array_opt
 
-import "testing"
+import (
+	"testing"
+	"unsafe"
+)
 
 func TestArr(t *testing.T) {
 	// 数组内存分配测试
@@ -33,6 +36,32 @@ func TestArr(t *testing.T) {
 	t.Logf("%p\n",  arr)
 	arr = append([]int{0}, arr...)
 	t.Logf("%p\n",  arr)
+
+	// 切片以struct实现
+	//type slice struct {
+	//	array unsafe.Pointer
+	//	len   int
+	//	cap   int
+	//}
+	arrs := make([][]int, 0, 5)
+	arrs = append(arrs, []int{1, 2, 3})
+	arrs = append(arrs, []int{1, 2})
+	arrs = append(arrs, []int{1, 2, 3, 4, 5})
+	t.Logf("arrs[0]: %p, arrs[1]: %p, arrs[2]: %p\n", arrs[0], arrs[1], arrs[2])
+	t.Logf("arrs size is %d\n", unsafe.Sizeof(arrs))
+
+	arrs = make([][]int, 0, 10)
+	srcArr := []int{1, 2, 3, 4, 5}
+	arrs = append(arrs, srcArr[:])
+	arrs = append(arrs, srcArr[1:])
+	arrs = append(arrs, srcArr[2:])
+	arrs = append(arrs, srcArr[2:3])
+	arrs = append(arrs, srcArr[:3])
+	t.Logf("arrs[0]: %p, arrs[1]: %p, arrs[2]: %p, arrs[3]: %p, arrs[4]: %p\n", arrs[0], arrs[1], arrs[2], arrs[3], arrs[4])
+	t.Logf("arrs size is %d\n", unsafe.Sizeof(arrs))
+
+	t.Logf("[]int size is %d\n", unsafe.Sizeof([]int{}))		// slice结构体大小
+	t.Logf("[]string size is %d\n", unsafe.Sizeof([]int{}))
 }
 
 func TestPivotIndex(t *testing.T) {

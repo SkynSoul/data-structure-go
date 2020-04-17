@@ -65,6 +65,15 @@ func TestTwoSum(t *testing.T) {
 	t.Logf("nums is %v, target is %d, ret is %v", numbers, target, TwoSum2(numbers, target))
 }
 
+func TestRemoveElement(t *testing.T) {
+	nums := []int{3, 2, 2, 3}
+	val := 3
+	t.Logf("src nums is %v, remove element is %d, dst nums is %v", nums, 3, nums[:RemoveElement(nums, val)])
+	nums = []int{0, 1, 2, 2, 3, 0, 4, 2}
+	val = 2
+	t.Logf("src nums is %v, remove element is %d, dst nums is %v", nums, 3, nums[:RemoveElement(nums, val)])
+}
+
 func BenchmarkSystemQuickSort(b *testing.B) {
 	nums := []int{1, 4, 3, 2, 5, 7, 9, 2, 3, 6, 15, 24, 0, 4, 6, 20}
 	for i := 0; i < b.N; i++ {

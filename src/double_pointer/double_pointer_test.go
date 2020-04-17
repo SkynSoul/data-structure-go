@@ -81,6 +81,13 @@ func TestFindMaxConsecutiveOnes(t *testing.T) {
 	t.Logf("nums is %v, the max combo is %d", nums, FindMaxConsecutiveOnes(nums))
 }
 
+func TestMinSubArrayLen(t *testing.T) {
+	nums := []int{2, 3, 1, 2, 4, 3, 8, 7, 1, 2, 5, 7, 3, 2, 1, 1, 2, 3, 1, 0, 0, 7}
+	s := 7
+	t.Logf("nums is %v, target sum is %d, the min array len is %d", nums, s, MinSubArrayLen(s, nums))
+	t.Logf("nums is %v, target sum is %d, the min array len is %d", nums, s, MinSubArrayLen2(s, nums))
+}
+
 func BenchmarkSystemQuickSort(b *testing.B) {
 	nums := []int{1, 4, 3, 2, 5, 7, 9, 2, 3, 6, 15, 24, 0, 4, 6, 20}
 	for i := 0; i < b.N; i++ {
@@ -113,5 +120,19 @@ func BenchmarkTwoSum2(b *testing.B) {
 	nums := []int{2, 7, 11, 15, 25, 26, 29, 30, 35, 40, 49, 56, 57, 61, 70, 81}
 	for i := 0; i < b.N; i++ {
 		TwoSum2(nums, 9)
+	}
+}
+
+func BenchmarkMinSubArrayLen(b *testing.B) {
+	nums := []int{2, 3, 1, 2, 4, 3, 8, 7, 1, 2, 5, 7, 3, 2, 1, 1, 2, 3, 1, 0, 0, 7}
+	for i := 0; i < b.N; i++ {
+		MinSubArrayLen(7, nums)
+	}
+}
+
+func BenchmarkMinSubArrayLen2(b *testing.B) {
+	nums := []int{2, 3, 1, 2, 4, 3, 8, 7, 1, 2, 5, 7, 3, 2, 1, 1, 2, 3, 1, 0, 0, 7}
+	for i := 0; i < b.N; i++ {
+		MinSubArrayLen2(7, nums)
 	}
 }

@@ -62,6 +62,9 @@ func TestArr(t *testing.T) {
 
 	t.Logf("[]int size is %d\n", unsafe.Sizeof([]int{}))		// slice结构体大小
 	t.Logf("[]string size is %d\n", unsafe.Sizeof([]int{}))
+
+	srcArr = []int{1, 2, 3, 4, 5}
+	t.Logf("srcArr[:2] is %v, srcArr[2:] is %v, srcArr[1:3] is %v", srcArr[:2], srcArr[2:], srcArr[1:3])
 }
 
 func TestPivotIndex(t *testing.T) {

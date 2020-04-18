@@ -65,6 +65,11 @@ func TestArr(t *testing.T) {
 
 	srcArr = []int{1, 2, 3, 4, 5}
 	t.Logf("srcArr[:2] is %v, srcArr[2:] is %v, srcArr[1:3] is %v", srcArr[:2], srcArr[2:], srcArr[1:3])
+
+	aArr, bArr := make([]int, 5), make([]int, 3)
+	t.Logf("aArr addr: %p, bArr addr: %p", aArr, bArr)
+	aArr, bArr = bArr, aArr
+	t.Logf("after swap, aArr addr: %p, bArr addr: %p", aArr, bArr)
 }
 
 func TestPivotIndex(t *testing.T) {
@@ -169,6 +174,20 @@ func TestGeneratePascalTriangle(t *testing.T) {
 	t.Logf("the row's num is %d, ret is %v\n", numRows, GeneratePascalTriangle(numRows))
 	numRows = 5
 	t.Logf("the row's num is %d, ret is %v\n", numRows, GeneratePascalTriangle(numRows))
+	numRows = 10
+	retArr := GeneratePascalTriangle(numRows)
+	for i := 0; i < numRows; i++ {
+		t.Logf("%d\t%v", i, retArr[i])
+	}
+	for i := 0; i < numRows; i++ {
+		t.Logf("%d\t%v", i, GetRow(i))
+	}
+	for i := 0; i < numRows; i++ {
+		t.Logf("%d\t%v", i, GetRow2(i))
+	}
+	for i := 0; i < numRows; i++ {
+		t.Logf("%d\t%v", i, GetRow3(i))
+	}
 }
 
 func BenchmarkPivotIndex(b *testing.B) {
@@ -216,5 +235,23 @@ func BenchmarkFindDiagonalOrder3(b *testing.B) {
 	}
 	for i := 0; i < b.N; i++ {
 		FindDiagonalOrder3(matrix)
+	}
+}
+
+func BenchmarkGetRow(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		GetRow(30)
+	}
+}
+
+func BenchmarkGetRow2(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		GetRow2(30)
+	}
+}
+
+func BenchmarkGetRow3(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		GetRow3(30)
 	}
 }

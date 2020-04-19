@@ -99,6 +99,13 @@ func TestRemoveDuplicates(t *testing.T) {
 	t.Logf("after remove duplicates is %v", nums[:tarLen])
 }
 
+func TestMoveZeroes(t *testing.T) {
+	nums := []int{0, 1, 0, 3, 12}
+	t.Logf("nums is %v", nums)
+	MoveZeroes(nums)
+	t.Logf("after move zero is %v", nums)
+}
+
 func BenchmarkSystemQuickSort(b *testing.B) {
 	nums := []int{1, 4, 3, 2, 5, 7, 9, 2, 3, 6, 15, 24, 0, 4, 6, 20}
 	for i := 0; i < b.N; i++ {

@@ -25,3 +25,19 @@ func RemoveDuplicates(nums []int) int {
     }
     return dstLen
 }
+
+func MoveZeroes(nums []int) {
+    zeroCount, dstLen := 0, 0
+    for i := 0; i < len(nums); i++ {
+        if nums[i] != 0 {
+            nums[dstLen] = nums[i]
+            dstLen++
+            continue
+        }
+        zeroCount++
+    }
+    for i := 0; i < zeroCount; i++ {
+        nums[dstLen] = 0
+        dstLen++
+    }
+}

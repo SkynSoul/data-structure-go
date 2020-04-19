@@ -88,6 +88,17 @@ func TestMinSubArrayLen(t *testing.T) {
 	t.Logf("nums is %v, target sum is %d, the min array len is %d", nums, s, MinSubArrayLen2(s, nums))
 }
 
+func TestRemoveDuplicates(t *testing.T) {
+	nums := []int{1, 1, 2}
+	t.Logf("nums is %v", nums)
+	tarLen := RemoveDuplicates(nums)
+	t.Logf("after remove duplicates is %v", nums[:tarLen])
+	nums = []int{0, 0, 1, 1, 1, 2, 2, 3, 3, 4}
+	t.Logf("nums is %v", nums)
+	tarLen = RemoveDuplicates(nums)
+	t.Logf("after remove duplicates is %v", nums[:tarLen])
+}
+
 func BenchmarkSystemQuickSort(b *testing.B) {
 	nums := []int{1, 4, 3, 2, 5, 7, 9, 2, 3, 6, 15, 24, 0, 4, 6, 20}
 	for i := 0; i < b.N; i++ {

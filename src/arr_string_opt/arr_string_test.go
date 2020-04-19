@@ -39,6 +39,15 @@ func TestReverseWords(t *testing.T) {
     t.Logf("src string: %s, after reverse: %s", s, ReverseWords(s))
 }
 
+func TestReverseWords2(t *testing.T) {
+    s := "the sky is blue"
+    t.Logf("src string: %s, after reverse: %s", s, ReverseWords2(s))
+    s = "ab"
+    t.Logf("src string: %s, after reverse: %s", s, ReverseWords2(s))
+    s = "Let's take LeetCode contest"
+    t.Logf("src string: %s, after reverse: %s", s, ReverseWords2(s))
+}
+
 func BenchmarkRotate(b *testing.B) {
     for i := 0; i < b.N; i++ {
         nums := []int{1, 2, 3, 4, 5, 6, 7}

@@ -37,6 +37,8 @@ func TestHasCycle(t *testing.T) {
     b := &ListNode{Val: 2, Next: c}
     a := &ListNode{Val: 1, Next: b}
     t.Logf("has cycle: %t", HasCycle(a))
+    t.Logf("detect cycle: %v", DetectCycle(a))
     d.Next = c
     t.Logf("has cycle: %t", HasCycle(a))
+    t.Logf("detect cycle: %v", DetectCycle(a))
 }

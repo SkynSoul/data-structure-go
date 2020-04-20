@@ -30,6 +30,19 @@ func HasCycle(head *ListNode) bool {
     return fast != nil
 }
 
+func DetectCycle(head *ListNode) *ListNode {
+    nodeMap := make(map[*ListNode]bool)
+    curNode := head
+    for curNode != nil {
+        _, ok := nodeMap[curNode]
+        if ok {
+            return curNode
+        }
+        nodeMap[curNode] = true
+        curNode = curNode.Next
+    }
+    return nil
+}
 
 /** Initialize your data structure here. */
 func ConstructorSinglyList() MyLinkedList {

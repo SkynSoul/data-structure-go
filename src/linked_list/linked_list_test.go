@@ -30,3 +30,13 @@ func TestSinglyLinkedList(t *testing.T) {
     l.AddAtIndex(5, 5)
     l.Print()
 }
+
+func TestHasCycle(t *testing.T) {
+    d := &ListNode{Val: 4, Next: nil}
+    c := &ListNode{Val: 3, Next: d}
+    b := &ListNode{Val: 2, Next: c}
+    a := &ListNode{Val: 1, Next: b}
+    t.Logf("has cycle: %t", HasCycle(a))
+    d.Next = c
+    t.Logf("has cycle: %t", HasCycle(a))
+}

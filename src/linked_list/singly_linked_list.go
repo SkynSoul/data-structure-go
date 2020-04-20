@@ -12,12 +12,29 @@ type MyLinkedList struct {
     length int
 }
 
+func HasCycle(head *ListNode) bool {
+    if head == nil || head.Next == nil || head.Next.Next == nil {
+        return false
+    }
+    slow, fast := head.Next, head.Next.Next
+    for slow != fast {
+        if fast == nil || fast.Next == nil {
+            return false
+        }
+        fast = fast.Next.Next
+        if slow == nil {
+            return false
+        }
+        slow = slow.Next
+    }
+    return fast != nil
+}
+
 
 /** Initialize your data structure here. */
 func ConstructorSinglyList() MyLinkedList {
     return MyLinkedList{head: &ListNode{Val: 0, Next: nil}, length: 0}
 }
-
 
 /** Get the value of the index-th node in the linked list. If the index is invalid, return -1. */
 func (ml *MyLinkedList) Get(index int) int {

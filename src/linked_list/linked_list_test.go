@@ -185,3 +185,16 @@ func TestRemoveElements(t *testing.T) {
         head = head.Next
     }
 }
+
+func TestOddEvenList(t *testing.T) {
+    l := ConstructorSinglyList()
+    for i := 1; i <= 3; i++ {
+        l.AddAtTail(i)
+    }
+    l.Print()
+    head := OddEvenList(l.head.Next)
+    for head != nil {
+        t.Logf("%d", head.Val)
+        head = head.Next
+    }
+}

@@ -147,3 +147,27 @@ func RemoveElements(head *ListNode, val int) *ListNode {
     }
     return myHead.Next
 }
+
+func OddEvenList(head *ListNode) *ListNode {
+    if head == nil || head.Next == nil {
+        return head
+    }
+    evenHead := head.Next
+    var oddTail, tempNode *ListNode = nil, nil
+    curNode := head
+    i := 1
+    for curNode != nil {
+        if i % 2 == 1 {
+            oddTail = curNode
+        }
+        if curNode.Next == nil {
+            break
+        }
+        tempNode = curNode.Next
+        curNode.Next = curNode.Next.Next
+        curNode = tempNode
+        i++
+    }
+    oddTail.Next = evenHead
+    return head
+}

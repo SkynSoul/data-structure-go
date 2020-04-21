@@ -42,3 +42,15 @@ func TestHasCycle(t *testing.T) {
     t.Logf("has cycle: %t", HasCycle(a))
     t.Logf("detect cycle: %v", DetectCycle(a))
 }
+
+func TestGetIntersectionNode(t *testing.T) {
+    d := &ListNode{Val: 4, Next: nil}
+    c := &ListNode{Val: 3, Next: d}
+    b := &ListNode{Val: 2, Next: c}
+    a := &ListNode{Val: 1, Next: b}
+    aa := &ListNode{Val: 0, Next: c}
+    t.Logf("the intersection node is %v", GetIntersectionNode(a, aa))
+    t.Logf("a: %v, aa: %v", a, aa)
+    t.Logf("the intersection node is %v", GetIntersectionNode2(a, aa))
+    t.Logf("a: %v, aa: %v", a, aa)
+}

@@ -190,3 +190,21 @@ func GetIntersectionNode2(headA, headB *ListNode) *ListNode {
         }
     }
 }
+
+func RemoveNthFromEnd(head *ListNode, n int) *ListNode {
+    arrHelper := make([]*ListNode, n + 1)
+    i := -1
+    curNode := head
+    for curNode != nil {
+        i++
+        arrHelper[i % (n + 1)] = curNode
+        curNode = curNode.Next
+    }
+    delNode := arrHelper[(i + 2) % (n + 1)]
+    if delNode == head {
+        return head.Next
+    }
+    preNode := arrHelper[(i + 1) % (n + 1)]
+    preNode.Next = preNode.Next.Next
+    return head
+}

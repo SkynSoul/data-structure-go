@@ -1,6 +1,9 @@
 package linked_list
 
-import "testing"
+import (
+    "fmt"
+    "testing"
+)
 
 func TestSinglyLinkedList(t *testing.T) {
     l := ConstructorSinglyList()
@@ -53,4 +56,48 @@ func TestGetIntersectionNode(t *testing.T) {
     t.Logf("a: %v, aa: %v", a, aa)
     t.Logf("the intersection node is %v", GetIntersectionNode2(a, aa))
     t.Logf("a: %v, aa: %v", a, aa)
+}
+
+func TestRemoveNthFromEnd(t *testing.T) {
+    a := &ListNode{Val: 1, Next: nil}
+    t.Logf("after delete %d\n", 1)
+    head := RemoveNthFromEnd(a, 1)
+    for head != nil {
+        fmt.Printf("%d\t", head.Val)
+        head = head.Next
+    }
+    fmt.Println("")
+    
+    c := &ListNode{Val: 3, Next: nil}
+    b := &ListNode{Val: 2, Next: c}
+    a = &ListNode{Val: 1, Next: b}
+    t.Logf("after delete %d\n", 1)
+    head = RemoveNthFromEnd(a, 1)
+    for head != nil {
+        fmt.Printf("%d\t", head.Val)
+        head = head.Next
+    }
+    fmt.Println("")
+    
+    c = &ListNode{Val: 3, Next: nil}
+    b = &ListNode{Val: 2, Next: c}
+    a = &ListNode{Val: 1, Next: b}
+    t.Logf("after delete %d\n", 3)
+    head = RemoveNthFromEnd(a, 3)
+    for head != nil {
+        fmt.Printf("%d\t", head.Val)
+        head = head.Next
+    }
+    fmt.Println("")
+    
+    c = &ListNode{Val: 3, Next: nil}
+    b = &ListNode{Val: 2, Next: c}
+    a = &ListNode{Val: 1, Next: b}
+    t.Logf("after delete %d\n", 2)
+    head = RemoveNthFromEnd(a, 2)
+    for head != nil {
+        fmt.Printf("%d\t", head.Val)
+        head = head.Next
+    }
+    fmt.Println("")
 }

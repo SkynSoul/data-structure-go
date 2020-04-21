@@ -171,3 +171,17 @@ func TestReverseList3(t *testing.T) {
     }
     fmt.Println("")
 }
+
+func TestRemoveElements(t *testing.T) {
+    l := ConstructorSinglyList()
+    for i := 1; i <= 6; i++ {
+        l.AddAtTail(i)
+        l.AddAtTail(i)
+    }
+    l.Print()
+    head := RemoveElements(l.head.Next, 6)
+    for head != nil {
+        t.Logf("%d", head.Val)
+        head = head.Next
+    }
+}

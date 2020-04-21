@@ -133,3 +133,17 @@ func ReverseList3(head *ListNode) *ListNode {
     head.Next = nil
     return preNode
 }
+
+func RemoveElements(head *ListNode, val int) *ListNode {
+    myHead := &ListNode{Val: -1, Next: head}
+    preNode, curNode := myHead, myHead.Next
+    for curNode != nil {
+        if curNode.Val == val {
+            preNode.Next = curNode.Next
+        } else {
+            preNode = curNode
+        }
+        curNode = preNode .Next
+    }
+    return myHead.Next
+}

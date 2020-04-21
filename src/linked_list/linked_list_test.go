@@ -101,3 +101,73 @@ func TestRemoveNthFromEnd(t *testing.T) {
     }
     fmt.Println("")
 }
+
+func TestReverseList(t *testing.T) {
+    c := &ListNode{Val: 3, Next: nil}
+    b := &ListNode{Val: 2, Next: c}
+    a := &ListNode{Val: 1, Next: b}
+    t.Logf("after reverse")
+    head := ReverseList(a)
+    for head != nil {
+        fmt.Printf("%d\t", head.Val)
+        head = head.Next
+    }
+    fmt.Println("")
+    
+    a = &ListNode{Val: 1, Next: nil}
+    t.Logf("after reverse")
+    head = ReverseList(a)
+    for head != nil {
+        fmt.Printf("%d\t", head.Val)
+        head = head.Next
+    }
+    fmt.Println("")
+}
+
+func TestReverseList2(t *testing.T) {
+    e := &ListNode{Val: 5, Next: nil}
+    d := &ListNode{Val: 4, Next: e}
+    c := &ListNode{Val: 3, Next: d}
+    b := &ListNode{Val: 2, Next: c}
+    a := &ListNode{Val: 1, Next: b}
+    t.Logf("after reverse")
+    head := ReverseList2(a)
+    for head != nil {
+        fmt.Printf("%d\t", head.Val)
+        head = head.Next
+    }
+    fmt.Println("")
+    
+    a = &ListNode{Val: 1, Next: nil}
+    t.Logf("after reverse")
+    head = ReverseList2(a)
+    for head != nil {
+        fmt.Printf("%d\t", head.Val)
+        head = head.Next
+    }
+    fmt.Println("")
+}
+
+func TestReverseList3(t *testing.T) {
+    e := &ListNode{Val: 5, Next: nil}
+    d := &ListNode{Val: 4, Next: e}
+    c := &ListNode{Val: 3, Next: d}
+    b := &ListNode{Val: 2, Next: c}
+    a := &ListNode{Val: 1, Next: b}
+    t.Logf("after reverse")
+    head := ReverseList3(a)
+    for head != nil {
+        fmt.Printf("%d\t", head.Val)
+        head = head.Next
+    }
+    fmt.Println("")
+    
+    a = &ListNode{Val: 1, Next: nil}
+    t.Logf("after reverse")
+    head = ReverseList3(a)
+    for head != nil {
+        fmt.Printf("%d\t", head.Val)
+        head = head.Next
+    }
+    fmt.Println("")
+}

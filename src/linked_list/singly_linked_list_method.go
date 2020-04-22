@@ -198,3 +198,28 @@ func IsPalindrome(head *ListNode) bool {
     }
     return true
 }
+
+func MergeTwoLists(l1 *ListNode, l2 *ListNode) *ListNode {
+    if l1 == nil {
+        return l2
+    }
+    sentinel := &ListNode{Val: -1, Next: l1}
+    var preNode, curNode, inNode, tempNode *ListNode = sentinel, l1, l2, nil
+    for curNode != nil && inNode != nil {
+        if inNode.Val < curNode.Val {
+            tempNode = inNode.Next
+            preNode.Next = inNode
+            inNode.Next = curNode
+            preNode = inNode
+            inNode = tempNode
+        } else {
+            if curNode.Next == nil {
+                curNode.Next = inNode
+                break
+            }
+            preNode = curNode
+            curNode = curNode.Next
+        }
+    }
+    return sentinel.Next
+}

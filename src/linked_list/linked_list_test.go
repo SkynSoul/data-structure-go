@@ -239,3 +239,20 @@ func TestDoubleLinkedList(t *testing.T) {
     l.AddAtIndex(5, 5)
     l.Print()
 }
+
+func TestMergeTwoLists(t *testing.T) {
+    l1 := ConstructorSinglyList()
+    l1.AddAtTail(0)
+    l1.AddAtTail(0)
+    l1.AddAtTail(1)
+    l1.AddAtTail(5)
+    l2 := ConstructorSinglyList()
+    l2.AddAtTail(1)
+    l2.AddAtTail(2)
+    l2.AddAtTail(4)
+    mHead := MergeTwoLists(l1.head.Next, l2.head.Next)
+    for mHead != nil {
+        t.Logf("%d", mHead.Val)
+        mHead = mHead.Next
+    }
+}

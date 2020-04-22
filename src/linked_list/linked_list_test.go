@@ -272,3 +272,30 @@ func TestAddTwoNumbers(t *testing.T) {
         mHead = mHead.Next
     }
 }
+
+func TestFlatten(t *testing.T) {
+    nodeArr := make([]*Node, 12)
+    for i := 0; i < 12; i++ {
+        nodeArr[i] = &Node{Val: i + 1}
+    }
+    for i := 0; i < 12; i++ {
+        if i != 0 {
+            nodeArr[i].Prev = nodeArr[i - 1]
+        }
+        if i != 11 {
+            nodeArr[i].Next = nodeArr[i + 1]
+        }
+    }
+    nodeArr[5].Next = nil
+    nodeArr[9].Next = nil
+    nodeArr[2].Child = nodeArr[6]
+    nodeArr[6].Prev = nil
+    nodeArr[7].Child = nodeArr[10]
+    nodeArr[10].Prev = nil
+    
+    root := Flatten(nodeArr[0])
+    for root != nil {
+        t.Logf("%v", root)
+        root = root.Next
+    }
+}

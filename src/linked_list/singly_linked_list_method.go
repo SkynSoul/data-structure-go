@@ -223,3 +223,26 @@ func MergeTwoLists(l1 *ListNode, l2 *ListNode) *ListNode {
     }
     return sentinel.Next
 }
+
+func AddTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
+    sentinel := &ListNode{Val: -1, Next: nil}
+    preNode := sentinel
+    sum := 0
+    for l1 != nil || l2 != nil {
+        if l1 != nil {
+            sum += l1.Val
+            l1 = l1.Next
+        }
+        if l2 != nil {
+            sum += l2.Val
+            l2 = l2.Next
+        }
+        preNode.Next = &ListNode{Val: sum % 10, Next: nil}
+        preNode = preNode.Next
+        sum = sum / 10
+    }
+    if sum > 0 {
+        preNode.Next = &ListNode{Val: sum, Next: nil}
+    }
+    return sentinel.Next
+}

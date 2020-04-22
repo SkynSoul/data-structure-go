@@ -256,3 +256,19 @@ func TestMergeTwoLists(t *testing.T) {
         mHead = mHead.Next
     }
 }
+
+func TestAddTwoNumbers(t *testing.T) {
+    l1 := ConstructorSinglyList()
+    l1.AddAtTail(2)
+    l1.AddAtTail(4)
+    l1.AddAtTail(3)
+    l2 := ConstructorSinglyList()
+    l2.AddAtTail(5)
+    l2.AddAtTail(6)
+    l2.AddAtTail(4)
+    mHead := AddTwoNumbers(l1.head.Next, l2.head.Next)
+    for mHead != nil {
+        t.Logf("%d", mHead.Val)
+        mHead = mHead.Next
+    }
+}

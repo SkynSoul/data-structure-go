@@ -1,5 +1,9 @@
 package linked_list
 
+import (
+    "math"
+)
+
 func HasCycle(head *ListNode) bool {
     if head == nil || head.Next == nil || head.Next.Next == nil {
         return false
@@ -170,4 +174,27 @@ func OddEvenList(head *ListNode) *ListNode {
     }
     oddTail.Next = evenHead
     return head
+}
+
+func IsPalindrome(head *ListNode) bool {
+    length := 0
+    curNode := head
+    for curNode != nil {
+        length++
+        curNode = curNode.Next
+    }
+    halfHeadIdx := int(math.Ceil(float64(length) / 2.0))
+    halfHead := head
+    for i := 1; i <= halfHeadIdx; i++ {
+        halfHead = halfHead.Next
+    }
+    halfHead = ReverseList(halfHead)
+    for head != nil && halfHead != nil {
+        if head.Val != halfHead.Val {
+            return false
+        }
+        head = head.Next
+        halfHead = halfHead.Next
+    }
+    return true
 }

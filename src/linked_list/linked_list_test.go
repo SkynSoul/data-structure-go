@@ -198,3 +198,15 @@ func TestOddEvenList(t *testing.T) {
         head = head.Next
     }
 }
+
+func TestIsPalindrome(t *testing.T) {
+    l := ConstructorSinglyList()
+    for i := 1; i <= 2; i++ {
+       l.AddAtTail(i)
+    }
+    //for i := 2; i > 0; i-- {
+    //   l.AddAtTail(i)
+    //}
+    l.Print()
+    t.Logf("the list is palindrome: %t\n", IsPalindrome(l.head.Next))
+}

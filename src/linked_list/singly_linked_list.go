@@ -60,8 +60,11 @@ func (ml *MyLinkedList) AddAtIndex(index int, val int)  {
         ml.AddAtHead(val)
         return
     }
-    if index >= ml.length {
+    if index == ml.length {
         ml.AddAtTail(val)
+        return
+    }
+    if index > ml.length {
         return
     }
     preNode := ml.head

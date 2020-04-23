@@ -1,6 +1,7 @@
 package linked_list
 
 import (
+    "container/list"
     "math"
 )
 
@@ -245,4 +246,66 @@ func AddTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
         preNode.Next = &ListNode{Val: sum, Next: nil}
     }
     return sentinel.Next
+}
+
+type RandomNode struct {
+    Val int
+    Next *RandomNode
+    Random *RandomNode
+}
+
+func CopyRandomList(head *RandomNode) *RandomNode {
+    copied := make(map[*RandomNode]*RandomNode)
+    return copyRandomDfs(head, copied)
+}
+
+func copyRandomDfs(head *RandomNode, copied map[*RandomNode]*RandomNode) *RandomNode{
+    if head == nil {
+        return head
+    }
+    if cpNode, ok := copied[head]; ok {
+        return cpNode
+    }
+    curNode := &RandomNode{Val: head.Val}
+    copied[head] = curNode
+    curNode.Next = copyRandomDfs(head.Next, copied)
+    curNode.Random = copyRandomDfs(head.Random, copied)
+    return curNode
+}
+
+func CopyRandomListByStack(head *RandomNode) *RandomNode {
+    if head == nil {
+        return nil
+    }
+    stackHelper := list.New()
+    copied := make(map[*RandomNode]*RandomNode)
+    stackHelper.PushBack(head)
+    for stackHelper.Len() > 0 {
+        curNode := stackHelper.Back().Value.(*RandomNode)
+        cpNode, ok := copied[curNode]
+        if !ok {
+            cpNode = &RandomNode{Val: curNode.Val}
+            copied[curNode] = cpNode
+        }
+        if curNode.Next != nil {
+            nextNode, ok := copied[curNode.Next]
+            if ok {
+                cpNode.Next = nextNode
+            } else {
+                stackHelper.PushBack(curNode.Next)
+                continue
+            }
+        }
+        if curNode.Random != nil {
+            randomNode, ok := copied[curNode.Random]
+            if ok {
+                cpNode.Random = randomNode
+            } else {
+                stackHelper.PushBack(curNode.Random)
+                continue
+            }
+        }
+        stackHelper.Remove(stackHelper.Back())
+    }
+    return copied[head]
 }

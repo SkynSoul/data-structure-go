@@ -299,3 +299,69 @@ func TestFlatten(t *testing.T) {
         root = root.Next
     }
 }
+
+func TestCopyRandomList(t *testing.T) {
+    n5 := &RandomNode{Val: 1, Next: nil}
+    n4 := &RandomNode{Val: 10, Next: n5}
+    n3 := &RandomNode{Val: 11, Next: n4}
+    n2 := &RandomNode{Val: 13, Next: n3}
+    n1 := &RandomNode{Val: 7, Next: n2}
+    n2.Random = n1
+    n3.Random = n5
+    n4.Random = n3
+    n5.Random = n1
+    nn1 := CopyRandomList(n1)
+    for nn1 != nil {
+        t.Logf("addr: %p, val: %d, struct: %v", nn1, nn1.Val, nn1)
+        nn1 = nn1.Next
+    }
+}
+
+func TestCopyRandomListByStack(t *testing.T) {
+    n5 := &RandomNode{Val: 1, Next: nil}
+    n4 := &RandomNode{Val: 10, Next: n5}
+    n3 := &RandomNode{Val: 11, Next: n4}
+    n2 := &RandomNode{Val: 13, Next: n3}
+    n1 := &RandomNode{Val: 7, Next: n2}
+    n2.Random = n1
+    n3.Random = n5
+    n4.Random = n3
+    n5.Random = n1
+    nn1 := CopyRandomListByStack(n1)
+    for nn1 != nil {
+        t.Logf("addr: %p, val: %d, struct: %v", nn1, nn1.Val, nn1)
+        nn1 = nn1.Next
+    }
+}
+
+func BenchmarkCopyRandomList(b *testing.B) {
+    n5 := &RandomNode{Val: 1, Next: nil}
+    n4 := &RandomNode{Val: 10, Next: n5}
+    n3 := &RandomNode{Val: 11, Next: n4}
+    n2 := &RandomNode{Val: 13, Next: n3}
+    n1 := &RandomNode{Val: 7, Next: n2}
+    n2.Random = n1
+    n3.Random = n5
+    n4.Random = n3
+    n5.Random = n1
+    b.ResetTimer()
+    for i := 0; i < b.N; i++ {
+        CopyRandomList(n1)
+    }
+}
+
+func BenchmarkCopyRandomListByStack(b *testing.B) {
+    n5 := &RandomNode{Val: 1, Next: nil}
+    n4 := &RandomNode{Val: 10, Next: n5}
+    n3 := &RandomNode{Val: 11, Next: n4}
+    n2 := &RandomNode{Val: 13, Next: n3}
+    n1 := &RandomNode{Val: 7, Next: n2}
+    n2.Random = n1
+    n3.Random = n5
+    n4.Random = n3
+    n5.Random = n1
+    b.ResetTimer()
+    for i := 0; i < b.N; i++ {
+        CopyRandomListByStack(n1)
+    }
+}

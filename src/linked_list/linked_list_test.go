@@ -334,6 +334,71 @@ func TestCopyRandomListByStack(t *testing.T) {
     }
 }
 
+func TestRotateRight(t *testing.T) {
+    l := ConstructorSinglyList()
+    for i := 1; i <= 5; i++ {
+        l.AddAtTail(i)
+    }
+    l.Print()
+    head := RotateRight(l.head.Next, 1)
+    for head != nil {
+        fmt.Printf("%d\t", head.Val)
+        head = head.Next
+    }
+    fmt.Printf("\n")
+    l = ConstructorSinglyList()
+    for i := 1; i <= 5; i++ {
+        l.AddAtTail(i)
+    }
+    head = RotateRight(l.head.Next, 2)
+    for head != nil {
+        fmt.Printf("%d\t", head.Val)
+        head = head.Next
+    }
+    fmt.Printf("\n")
+    l = ConstructorSinglyList()
+    for i := 1; i <= 5; i++ {
+        l.AddAtTail(i)
+    }
+    head = RotateRight(l.head.Next, 3)
+    for head != nil {
+        fmt.Printf("%d\t", head.Val)
+        head = head.Next
+    }
+    fmt.Printf("\n")
+    l = ConstructorSinglyList()
+    for i := 1; i <= 5; i++ {
+        l.AddAtTail(i)
+    }
+    head = RotateRight(l.head.Next, 4)
+    for head != nil {
+        fmt.Printf("%d\t", head.Val)
+        head = head.Next
+    }
+    fmt.Printf("\n")
+    l = ConstructorSinglyList()
+    for i := 1; i <= 5; i++ {
+        l.AddAtTail(i)
+    }
+    head = RotateRight(l.head.Next, 5)
+    for head != nil {
+        fmt.Printf("%d\t", head.Val)
+        head = head.Next
+    }
+    fmt.Printf("\n")
+    
+    l = ConstructorSinglyList()
+    for i := 1; i <= 5; i++ {
+        l.AddAtTail(i)
+    }
+    head = RotateRight(l.head.Next, 6)
+    for head != nil {
+        fmt.Printf("%d\t", head.Val)
+        head = head.Next
+    }
+    fmt.Printf("\n")
+}
+
 func BenchmarkCopyRandomList(b *testing.B) {
     n5 := &RandomNode{Val: 1, Next: nil}
     n4 := &RandomNode{Val: 10, Next: n5}

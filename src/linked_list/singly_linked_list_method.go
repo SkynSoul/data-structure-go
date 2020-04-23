@@ -248,6 +248,26 @@ func AddTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
     return sentinel.Next
 }
 
+func RotateRight(head *ListNode, k int) *ListNode {
+    if head == nil || head.Next == nil {
+        return head
+    }
+    length := 1
+    tail := head
+    for tail.Next != nil {
+        length++
+        tail = tail.Next
+    }
+    tail.Next = head
+    k = k % length
+    for i := 0; i < length - k - 1; i++ {
+        head = head.Next
+    }
+    newHead := head.Next
+    head.Next = nil
+    return newHead
+}
+
 type RandomNode struct {
     Val int
     Next *RandomNode

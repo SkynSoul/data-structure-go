@@ -6,6 +6,12 @@ import (
 )
 
 func TestArr(t *testing.T) {
+	aa := make([][]*int, 10)
+	t.Logf("%v, len: %d", aa, len(aa))
+	
+	bb := make([]*int, 10)
+	t.Logf("%v, len: %d", bb, len(bb))
+
 	// 数组内存分配测试
 	a := [5]int{1, 2, 3}
 	t.Logf("arr: %v, addr: %p, a[:] %p, a[1:] %p, a[:1] %p\n",  a, &a, a[:], a[1:], a[:1])

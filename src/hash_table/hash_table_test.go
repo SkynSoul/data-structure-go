@@ -110,6 +110,15 @@ func TestIsIsomorphic(t *testing.T) {
     t.Logf("s: %s, t: %s, isomorphic: %t", str1, str2, IsIsomorphic2(str1, str2))
 }
 
+func TestFindRestaurant(t *testing.T) {
+   list1 := []string{"Shogun", "Tapioca Express", "Burger King", "KFC"}
+   list2 := []string{"Piatti", "The Grill at Torrey Pines", "Hungry Hunter Steakhouse", "Shogun"}
+   t.Logf("find restaurant: %v", FindRestaurant(list1, list2))
+   list1 = []string{"Shogun", "Tapioca Express", "Burger King", "KFC"}
+   list2 = []string{"KFC", "Shogun", "Burger King"}
+   t.Logf("find restaurant: %v", FindRestaurant(list1, list2))
+}
+
 func BenchmarkSingleNumber(b *testing.B) {
     nums := []int{4, 1, 2, 1, 2}
     for i := 0; i < b.N; i++ {

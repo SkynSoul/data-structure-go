@@ -88,3 +88,32 @@ func doIsomorphic(s string, t string) bool {
 	}
 	return true
 }
+
+func FindRestaurant(list1 []string, list2 []string) []string {
+	nameMap := make(map[string]int)
+	for index, name := range list1 {
+		nameMap[name] = index
+	}
+	retMap := make(map[int][]string)
+	minSum := -1
+	for index, name := range list2 {
+		idx, ok := nameMap[name]
+		if !ok {
+			continue
+		}
+		idxSum := index + idx
+		if minSum < 0 || idxSum < minSum {
+			minSum = idxSum
+		}
+		tarArr, ok := retMap[idxSum]
+		if !ok {
+			retMap[idxSum] = []string{name}
+			continue
+		}
+		retMap[idxSum] = append(tarArr, name)
+	}
+	if minSum < 0 {
+		return []string{}
+	}
+	return retMap[minSum]
+}

@@ -86,6 +86,21 @@ func TestIsHappy(t *testing.T) {
     t.Logf("number is %d, is happy: %t", num, IsHappy(num))
 }
 
+func TestTwoSum(t *testing.T) {
+    nums := []int{2, 7, 11, 15}
+    target := 9
+    t.Logf("nums: %v, target: %v, ret: %v", nums, target, TwoSum(nums, target))
+    nums = []int{2, 5, 5, 15}
+    target = 10
+    t.Logf("nums: %v, target: %v, ret: %v", nums, target, TwoSum(nums, target))
+    nums = []int{3, 2, 4, 15}
+    target = 6
+    t.Logf("nums: %v, target: %v, ret: %v", nums, target, TwoSum(nums, target))
+    nums = []int{1, 3, 4, 2}
+    target = 6
+    t.Logf("nums: %v, target: %v, ret: %v", nums, target, TwoSum(nums, target))
+}
+
 func BenchmarkSingleNumber(b *testing.B) {
     nums := []int{4, 1, 2, 1, 2}
     for i := 0; i < b.N; i++ {

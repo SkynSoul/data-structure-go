@@ -42,6 +42,12 @@ func TestArr(t *testing.T) {
 	t.Logf("%p\n",  arr)
 	arr = append([]int{0}, arr...)
 	t.Logf("%p\n",  arr)
+	
+	arr2 := [3]int{1, 2, 3}
+	arr2Slice := arr2[:0]
+	t.Logf("arr2: %v, arrSlice: %v", arr2, arr2Slice)
+	arr2Slice = append(arr2Slice, 4)
+	t.Logf("arr2: %v, arrSlice: %v", arr2, arr2Slice)
 
 	// 切片以struct实现
 	//type slice struct {

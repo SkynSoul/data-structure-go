@@ -30,3 +30,61 @@ func TwoSum(nums []int, target int) []int {
 	}
 	return []int{-1, -1}
 }
+
+func IsIsomorphic(s string, t string) bool {
+	ruleArr1 := getStringRule(s)
+	ruleArr2 := getStringRule(t)
+	if len(ruleArr1) != len(ruleArr2) {
+		return false
+	}
+	for i := 0; i < len(ruleArr1); i++ {
+		if len(ruleArr1[i]) != len(ruleArr2[i]) {
+			return false
+		}
+		for j := 0; j < len(ruleArr1[i]); j++ {
+			if ruleArr1[i][j] != ruleArr2[i][j] {
+				return false
+			}
+		}
+	}
+	return true
+}
+
+func getStringRule(s string) [][]int {
+	charMap := make(map[byte]int)
+	ruleArr := make([][]int, 0, len(s))
+	charIdx := 0
+	for i := 0; i < len(s); i++ {
+		tarIdx, ok := charMap[s[i]]
+		if !ok {
+			ruleArr = append(ruleArr, []int{i})
+			charMap[s[i]] = charIdx
+			charIdx++
+			continue
+		}
+		ruleArr[tarIdx] = append(ruleArr[tarIdx], i)
+	}
+	return ruleArr
+}
+
+func IsIsomorphic2(s string, t string) bool {
+	if len(s) != len(t) {
+		return false
+	}
+	return doIsomorphic(s, t) && doIsomorphic(t, s)
+}
+
+func doIsomorphic(s string, t string) bool {
+	charMap := make(map[byte]byte)
+	for i := 0; i < len(s); i++ {
+		reChar, ok := charMap[t[i]]
+		if !ok {
+			charMap[t[i]] = s[i]
+			continue
+		}
+		if s[i] != reChar {
+			return false
+		}
+	}
+	return true
+}

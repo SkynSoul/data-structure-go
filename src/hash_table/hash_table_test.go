@@ -101,6 +101,15 @@ func TestTwoSum(t *testing.T) {
     t.Logf("nums: %v, target: %v, ret: %v", nums, target, TwoSum(nums, target))
 }
 
+func TestIsIsomorphic(t *testing.T) {
+    str1, str2 := "egg", "add"
+    t.Logf("s: %s, t: %s, isomorphic: %t", str1, str2, IsIsomorphic2(str1, str2))
+    str1, str2 = "foo", "bar"
+    t.Logf("s: %s, t: %s, isomorphic: %t", str1, str2, IsIsomorphic2(str1, str2))
+    str1, str2 = "paper", "title"
+    t.Logf("s: %s, t: %s, isomorphic: %t", str1, str2, IsIsomorphic2(str1, str2))
+}
+
 func BenchmarkSingleNumber(b *testing.B) {
     nums := []int{4, 1, 2, 1, 2}
     for i := 0; i < b.N; i++ {
@@ -112,5 +121,19 @@ func BenchmarkSingleNumberXOR(b *testing.B) {
     nums := []int{4, 1, 2, 1, 2}
     for i := 0; i < b.N; i++ {
         SingleNumberXOR(nums)
+    }
+}
+
+func BenchmarkIsIsomorphic(b *testing.B) {
+    str1, str2 := "paper", "title"
+    for i := 0; i < b.N; i++ {
+        IsIsomorphic(str1, str2)
+    }
+}
+
+func BenchmarkIsIsomorphic2(b *testing.B) {
+    str1, str2 := "paper", "title"
+    for i := 0; i < b.N; i++ {
+        IsIsomorphic2(str1, str2)
     }
 }

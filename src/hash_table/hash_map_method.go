@@ -117,3 +117,62 @@ func FindRestaurant(list1 []string, list2 []string) []string {
 	}
 	return retMap[minSum]
 }
+
+func FirstUniqChar(s string) int {
+	charMap := make(map[byte]int)
+	for i := 0; i < len(s); i++ {
+		if _, ok := charMap[s[i]]; ok {
+			charMap[s[i]] = -1
+			continue
+		}
+		charMap[s[i]] = i
+	}
+	minIdx := -1
+	for _, val := range charMap {
+		if val == -1 {
+			continue
+		}
+		if minIdx < 0 || val < minIdx {
+			minIdx = val
+		}
+	}
+	return minIdx
+}
+
+func Intersect(nums1 []int, nums2 []int) []int {
+	if len(nums1) > len(nums2) {
+		nums1, nums2 = nums2, nums1
+	}
+	charMap := make(map[int]int)
+	for i := 0; i < len(nums1); i++ {
+		if _, ok := charMap[nums1[i]]; ok {
+			charMap[nums1[i]] += 1
+			continue
+		}
+		charMap[nums1[i]] = 1
+	}
+	ret := make([]int, 0)
+	for i := 0; i < len(nums2) && len(charMap) > 0; i++ {
+		if count, ok := charMap[nums2[i]]; ok {
+			ret = append(ret, nums2[i])
+			charMap[nums2[i]] -= 1
+			if count == 1 {
+				delete(charMap, nums2[i])
+			}
+		}
+	}
+	return ret
+}
+
+func ContainsNearbyDuplicate(nums []int, k int) bool {
+	numMap := make(map[int]int)
+	for i := 0; i < len(nums); i++ {
+		if lstIdx, ok := numMap[nums[i]]; ok {
+			if i - lstIdx <= k {
+				return true
+			}
+		}
+		numMap[nums[i]] = i
+	}
+	return false
+}

@@ -119,6 +119,42 @@ func TestFindRestaurant(t *testing.T) {
    t.Logf("find restaurant: %v", FindRestaurant(list1, list2))
 }
 
+func TestFirstUniqChar(t *testing.T) {
+    s := "leetcode"
+    t.Logf("s: %s, first unique char idx: %d", s, FirstUniqChar(s))
+    s = "loveleetcode"
+    t.Logf("s: %s, first unique char idx: %d", s, FirstUniqChar(s))
+    s = "ee"
+    t.Logf("s: %s, first unique char idx: %d", s, FirstUniqChar(s))
+    s = "ea"
+    t.Logf("s: %s, first unique char idx: %d", s, FirstUniqChar(s))
+    s = ""
+    t.Logf("s: %s, first unique char idx: %d", s, FirstUniqChar(s))
+    s = "a"
+    t.Logf("s: %s, first unique char idx: %d", s, FirstUniqChar(s))
+}
+
+func TestIntersect(t *testing.T) {
+    nums1 := []int{1, 2, 2, 1}
+    nums2 := []int{2, 2}
+    t.Logf("the intersect is %v", Intersect(nums1, nums2))
+    nums1 = []int{4, 9, 5}
+    nums2 = []int{9, 4, 9, 8, 4}
+    t.Logf("the intersect is %v", Intersect(nums1, nums2))
+}
+
+func TestContainsNearbyDuplicate(t *testing.T) {
+    nums := []int{1, 2, 3, 1}
+    k := 3
+    t.Logf("nums: %v, k: %d, ret: %t", nums, k, ContainsNearbyDuplicate(nums, k))
+    nums = []int{1, 0, 1, 1}
+    k = 1
+    t.Logf("nums: %v, k: %d, ret: %t", nums, k, ContainsNearbyDuplicate(nums, k))
+    nums = []int{1, 2, 3, 1, 2, 3}
+    k = 2
+    t.Logf("nums: %v, k: %d, ret: %t", nums, k, ContainsNearbyDuplicate(nums, k))
+}
+
 func BenchmarkSingleNumber(b *testing.B) {
     nums := []int{4, 1, 2, 1, 2}
     for i := 0; i < b.N; i++ {

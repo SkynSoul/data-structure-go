@@ -82,6 +82,9 @@ func TestArr(t *testing.T) {
 	t.Logf("aArr addr: %p, bArr addr: %p", aArr, bArr)
 	aArr, bArr = bArr, aArr
 	t.Logf("after swap, aArr addr: %p, bArr addr: %p", aArr, bArr)
+
+	arrMap := make(map[int][]int)
+	t.Logf("append nil: %v", append(arrMap[0], 1))
 }
 
 func TestPivotIndex(t *testing.T) {

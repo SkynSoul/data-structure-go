@@ -155,6 +155,11 @@ func TestContainsNearbyDuplicate(t *testing.T) {
     t.Logf("nums: %v, k: %d, ret: %t", nums, k, ContainsNearbyDuplicate(nums, k))
 }
 
+func TestGroupAnagrams(t *testing.T) {
+    strs := []string{"eat", "tea", "tan", "ate", "nat", "bat"}
+    t.Logf("ret: %v", GroupAnagrams(strs))
+}
+
 func BenchmarkSingleNumber(b *testing.B) {
     nums := []int{4, 1, 2, 1, 2}
     for i := 0; i < b.N; i++ {

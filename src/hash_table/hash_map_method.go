@@ -1,5 +1,9 @@
 package hash_table
 
+import (
+	"sort"
+)
+
 // 前置条件，只有一种结果
 func TwoSum(nums []int, target int) []int {
 	numMap := make(map[int]int)
@@ -175,4 +179,24 @@ func ContainsNearbyDuplicate(nums []int, k int) bool {
 		numMap[nums[i]] = i
 	}
 	return false
+}
+
+func GroupAnagrams(strs []string) [][]string {
+	strMap := make(map[string][]string)
+	for _, str := range strs {
+		strArr := []byte(str)
+		sort.Slice(strArr, func(i, j int) bool {
+			return strArr[i] > strArr[j]
+		})
+		if tarArr, ok := strMap[string(strArr)]; ok {
+			strMap[string(strArr)] = append(tarArr, str)
+			continue
+		}
+		strMap[string(strArr)] = []string{str}
+	}
+	ret := make([][]string, 0, len(strMap))
+	for _, val := range strMap {
+		ret = append(ret, val)
+	}
+	return ret
 }

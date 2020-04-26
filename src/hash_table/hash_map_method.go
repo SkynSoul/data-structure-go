@@ -2,6 +2,7 @@ package hash_table
 
 import (
 	"sort"
+	"strconv"
 )
 
 // 前置条件，只有一种结果
@@ -199,4 +200,117 @@ func GroupAnagrams(strs []string) [][]string {
 		ret = append(ret, val)
 	}
 	return ret
+}
+
+func IsValidSudoku(board [][]byte) bool {
+	rowMap := make(map[byte]map[byte]bool)
+	colMap := make(map[byte]map[byte]bool)
+	cellMap := make(map[byte]map[byte]bool)
+	for x := 0; x < len(board); x++ {
+		for y := 0; y < len(board[x]); y++ {
+			if board[x][y] == '.' {
+				continue
+			}
+			rowNums, ok := rowMap[byte(x)]
+			if !ok {
+				rowMap[byte(x)] = map[byte]bool{board[x][y]: true}
+			} else if _, ok := rowNums[board[x][y]]; ok {
+				return false
+			} else {
+				rowNums[board[x][y]] = true
+			}
+			colNums, ok := colMap[byte(y)]
+			if !ok {
+				colMap[byte(y)] = map[byte]bool{board[x][y]: true}
+			} else if _, ok := colNums[board[x][y]]; ok {
+				return false
+			} else {
+				colNums[board[x][y]] = true
+			}
+			cellKey := ((x / 3) * 3) + (y / 3)
+			cellNums, ok := cellMap[byte(cellKey)]
+			if !ok {
+				cellMap[byte(cellKey)] = map[byte]bool{board[x][y]: true}
+			} else if _, ok := cellNums[board[x][y]]; ok {
+				return false
+			} else {
+				cellNums[board[x][y]] = true
+			}
+		}
+	}
+	return true
+}
+
+func IsValidSudokuByArr(board [][]byte) bool {
+	rowArr := make([][]byte, 9)
+	colArr := make([][]byte, 9)
+	cellArr := make([][]byte, 9)
+	for i := 0; i < 9; i++ {
+		rowArr[i] = make([]byte, 10)
+		colArr[i] = make([]byte, 10)
+		cellArr[i] = make([]byte, 10)
+	}
+	for x := 0; x < len(board); x++ {
+		for y := 0; y < len(board[x]); y++ {
+			if board[x][y] == '.' {
+				continue
+			}
+			idx := board[x][y] - '0'
+			rowNums := rowArr[x]
+			if rowNums[idx] == 1 {
+				return false
+			}
+			rowNums[idx] = 1
+
+			colNums := colArr[y]
+			if colNums[idx] == 1 {
+				return false
+			}
+			colNums[idx] = 1
+			
+			cellKey := ((x / 3) * 3) + (y / 3)
+			cellNums := cellArr[cellKey]
+			if cellNums[idx] == 1 {
+				return false
+			}
+			cellNums[idx] = 1
+		}
+	}
+	return true
+}
+
+type TreeNode struct {
+	Val     int
+	Left    *TreeNode
+	Right   *TreeNode
+}
+
+func FindDuplicateSubtrees(root *TreeNode) []*TreeNode {
+	retMap := make(map[string][]*TreeNode)
+	preorder(root, retMap)
+	ret := make([]*TreeNode, 0)
+	for _, tarArr := range retMap {
+		if len(tarArr) > 1 {
+			ret = append(ret, tarArr...)
+		}
+	}
+	return ret
+}
+
+func preorder(root *TreeNode, retMap map[string][]*TreeNode) string {
+	if root == nil {
+		return ""
+	}
+	curStr := strconv.Itoa(root.Val)
+	leftStr := preorder(root.Left, retMap)
+	rightStr := preorder(root.Right, retMap)
+	curStr = curStr + "[L" + leftStr + "]"
+	curStr = curStr + "[R" + rightStr + "]"
+	nodeArr, ok := retMap[curStr]
+	if !ok {
+		retMap[curStr] = []*TreeNode{root}
+	} else {
+		retMap[curStr] = append(nodeArr, root)
+	}
+	return curStr
 }

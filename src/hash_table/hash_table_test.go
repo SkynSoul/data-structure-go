@@ -48,6 +48,23 @@ func TestHashMap(t *testing.T) {
     t.Logf("myMap.Get(2): %d", myMap.Get(2))
 }
 
+func TestGolangMap(t *testing.T) {
+    testMap := make(map[int]map[int]bool)
+    t.Logf("%v", testMap[1])
+    if testMap[2] == nil {
+        t.Logf("111111111111")
+    } else {
+        t.Logf("222222222222")
+    }
+    testMap[1] = make(map[int]bool)
+    target := testMap[1]
+    target[123] = true
+    t.Logf("%v", testMap)
+    target = testMap[2]
+    //target[456] = true
+    //t.Logf("%v", testMap)
+}
+
 func TestContainsDuplicate(t *testing.T) {
     nums := []int{1, 2, 3, 1}
     t.Logf("the nums is %v, is contains duplicate: %t", nums, ContainsDuplicate(nums))
@@ -160,6 +177,36 @@ func TestGroupAnagrams(t *testing.T) {
     t.Logf("ret: %v", GroupAnagrams(strs))
 }
 
+func TestIsValidSudoku(t *testing.T) {
+    board := [][]byte{
+        {'5', '3' , '.', '.', '7', '.', '.', '.', '.'},
+        {'6', '.' , '.', '1', '9', '5', '.', '.', '.'},
+        {'.', '9' , '8', '.', '.', '.', '.', '6', '.'},
+        {'8', '.' , '.', '.', '6', '.', '.', '.', '3'},
+        {'4', '.' , '.', '8', '.', '3', '.', '.', '1'},
+        {'7', '.' , '.', '.', '2', '.', '.', '.', '6'},
+        {'.', '6' , '.', '.', '.', '.', '2', '8', '.'},
+        {'.', '.' , '.', '4', '1', '9', '.', '.', '5'},
+        {'.', '.' , '.', '.', '8', '.', '.', '7', '9'},
+    }
+    t.Logf("is sudo: %t", IsValidSudoku(board))
+    t.Logf("is sudo: %t", IsValidSudokuByArr(board))
+}
+
+func TestFindDuplicateSubtrees(t *testing.T) {
+    n7 := &TreeNode{Val: 4}
+    n6 := &TreeNode{Val: 4}
+    n5 := &TreeNode{Val: 2, Left: n6}
+    n4 := &TreeNode{Val: 3, Left: n5, Right: n7}
+    n3 := &TreeNode{Val: 4}
+    n2 := &TreeNode{Val: 2, Left: n3}
+    n1 := &TreeNode{Val: 1, Left: n2, Right: n4}
+    retArr := FindDuplicateSubtrees(n1)
+    for _, val := range retArr {
+        t.Logf("cur root, addr: %p, val: %v, preorder ret: %s", val, val, preorder(val, make(map[string][]*TreeNode)))
+    }
+}
+
 func BenchmarkSingleNumber(b *testing.B) {
     nums := []int{4, 1, 2, 1, 2}
     for i := 0; i < b.N; i++ {
@@ -185,5 +232,41 @@ func BenchmarkIsIsomorphic2(b *testing.B) {
     str1, str2 := "paper", "title"
     for i := 0; i < b.N; i++ {
         IsIsomorphic2(str1, str2)
+    }
+}
+
+func BenchmarkIsValidSudoku(b *testing.B) {
+    board := [][]byte{
+        {'5', '3' , '.', '.', '7', '.', '.', '.', '.'},
+        {'6', '.' , '.', '1', '9', '5', '.', '.', '.'},
+        {'.', '9' , '8', '.', '.', '.', '.', '6', '.'},
+        {'8', '.' , '.', '.', '6', '.', '.', '.', '3'},
+        {'4', '.' , '.', '8', '.', '3', '.', '.', '1'},
+        {'7', '.' , '.', '.', '2', '.', '.', '.', '6'},
+        {'.', '6' , '.', '.', '.', '.', '2', '8', '.'},
+        {'.', '.' , '.', '4', '1', '9', '.', '.', '5'},
+        {'.', '.' , '.', '.', '8', '.', '.', '7', '9'},
+    }
+    b.ResetTimer()
+    for i := 0; i < b.N; i++ {
+        IsValidSudoku(board)
+    }
+}
+
+func BenchmarkIsValidSudokuByArr(b *testing.B) {
+    board := [][]byte{
+        {'5', '3' , '.', '.', '7', '.', '.', '.', '.'},
+        {'6', '.' , '.', '1', '9', '5', '.', '.', '.'},
+        {'.', '9' , '8', '.', '.', '.', '.', '6', '.'},
+        {'8', '.' , '.', '.', '6', '.', '.', '.', '3'},
+        {'4', '.' , '.', '8', '.', '3', '.', '.', '1'},
+        {'7', '.' , '.', '.', '2', '.', '.', '.', '6'},
+        {'.', '6' , '.', '.', '.', '.', '2', '8', '.'},
+        {'.', '.' , '.', '4', '1', '9', '.', '.', '5'},
+        {'.', '.' , '.', '.', '8', '.', '.', '7', '9'},
+    }
+    b.ResetTimer()
+    for i := 0; i < b.N; i++ {
+        IsValidSudokuByArr(board)
     }
 }

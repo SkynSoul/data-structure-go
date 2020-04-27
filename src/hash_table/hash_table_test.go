@@ -207,6 +207,18 @@ func TestFindDuplicateSubtrees(t *testing.T) {
     }
 }
 
+func TestNumJewelsInStones(t *testing.T) {
+    J, S := "aA", "aAAbbbb"
+    t.Logf("J: %s, S: %s, num: %d", J, S, NumJewelsInStones(J, S))
+    J, S = "z", "ZZ"
+    t.Logf("J: %s, S: %s, num: %d", J, S, NumJewelsInStones(J, S))
+
+    J, S = "aA", "aAAbbbb"
+    t.Logf("J: %s, S: %s, num: %d", J, S, NumJewelsInStonesByArr(J, S))
+    J, S = "z", "ZZ"
+    t.Logf("J: %s, S: %s, num: %d", J, S, NumJewelsInStonesByArr(J, S))
+}
+
 func BenchmarkSingleNumber(b *testing.B) {
     nums := []int{4, 1, 2, 1, 2}
     for i := 0; i < b.N; i++ {
@@ -268,5 +280,19 @@ func BenchmarkIsValidSudokuByArr(b *testing.B) {
     b.ResetTimer()
     for i := 0; i < b.N; i++ {
         IsValidSudokuByArr(board)
+    }
+}
+
+func BenchmarkNumJewelsInStones(b *testing.B) {
+    J, S := "aAweio", "aAAbbbbaapawerpaAFWEFAWJOAWRIErwearkaweapwej"
+    for i := 0; i < b.N; i++ {
+        NumJewelsInStones(J, S)
+    }
+}
+
+func BenchmarkNumJewelsInStonesByArr(b *testing.B) {
+    J, S := "aAweio", "aAAbbbbaapawerpaAFWEFAWJOAWRIErwearkaweapwej"
+    for i := 0; i < b.N; i++ {
+        NumJewelsInStonesByArr(J, S)
     }
 }

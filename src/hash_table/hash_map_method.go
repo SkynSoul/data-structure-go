@@ -314,3 +314,32 @@ func preorder(root *TreeNode, retMap map[string][]*TreeNode) string {
 	}
 	return curStr
 }
+
+func NumJewelsInStones(J string, S string) int {
+	gemMap := make(map[byte]bool)
+	for i := 0; i < len(J); i++ {
+		gemMap[J[i]] = true
+	}
+	ok := false
+	num := 0
+	for i := 0; i < len(S); i++ {
+		if _, ok = gemMap[S[i]]; ok {
+			num++
+		}
+	}
+	return num
+}
+
+func NumJewelsInStonesByArr(J string, S string) int {
+	gemArr := make([]byte, 58)
+	for i := 0; i < len(J); i++ {
+		gemArr[J[i] - 'A'] = 1
+	}
+	num := 0
+	for i := 0; i < len(S); i++ {
+		if gemArr[S[i] - 'A'] == 1 {
+			num++
+		}
+	}
+	return num
+}

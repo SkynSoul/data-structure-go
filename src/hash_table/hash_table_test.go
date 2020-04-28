@@ -219,6 +219,51 @@ func TestNumJewelsInStones(t *testing.T) {
     t.Logf("J: %s, S: %s, num: %d", J, S, NumJewelsInStonesByArr(J, S))
 }
 
+func TestLengthOfLongestSubstring(t *testing.T) {
+    s := "abcabcbb"
+    t.Logf("the length of longest sub string is %d", LengthOfLongestSubstring(s))
+    s = "bbbbbbbbbbb"
+    t.Logf("the length of longest sub string is %d", LengthOfLongestSubstring(s))
+    s = "pwwkew"
+    t.Logf("the length of longest sub string is %d", LengthOfLongestSubstring(s))
+    s = " "
+    t.Logf("the length of longest sub string is %d", LengthOfLongestSubstring(s))
+    s = "bpfbhmipx"
+    t.Logf("the length of longest sub string is %d", LengthOfLongestSubstring(s))
+    s = "umvejcuuk"
+    t.Logf("the length of longest sub string is %d", LengthOfLongestSubstring(s))
+}
+
+func TestLengthOfLongestSubstring2(t *testing.T) {
+    s := "abcabcbb"
+    t.Logf("the length of longest sub string is %d", LengthOfLongestSubstring2(s))
+    s = "bbbbbbbbbbb"
+    t.Logf("the length of longest sub string is %d", LengthOfLongestSubstring2(s))
+    s = "pwwkew"
+    t.Logf("the length of longest sub string is %d", LengthOfLongestSubstring2(s))
+    s = " "
+    t.Logf("the length of longest sub string is %d", LengthOfLongestSubstring2(s))
+    s = "bpfbhmipx"
+    t.Logf("the length of longest sub string is %d", LengthOfLongestSubstring2(s))
+    s = "umvejcuuk"
+    t.Logf("the length of longest sub string is %d", LengthOfLongestSubstring2(s))
+}
+
+func TestLengthOfLongestSubstring3(t *testing.T) {
+    s := "abcabcbb"
+    t.Logf("the length of longest sub string is %d", LengthOfLongestSubstring3(s))
+    s = "bbbbbbbbbbb"
+    t.Logf("the length of longest sub string is %d", LengthOfLongestSubstring3(s))
+    s = "pwwkew"
+    t.Logf("the length of longest sub string is %d", LengthOfLongestSubstring3(s))
+    s = " "
+    t.Logf("the length of longest sub string is %d", LengthOfLongestSubstring3(s))
+    s = "bpfbhmipx"
+    t.Logf("the length of longest sub string is %d", LengthOfLongestSubstring3(s))
+    s = "umvejcuuk"
+    t.Logf("the length of longest sub string is %d", LengthOfLongestSubstring3(s))
+}
+
 func BenchmarkSingleNumber(b *testing.B) {
     nums := []int{4, 1, 2, 1, 2}
     for i := 0; i < b.N; i++ {
@@ -294,5 +339,33 @@ func BenchmarkNumJewelsInStonesByArr(b *testing.B) {
     J, S := "aAweio", "aAAbbbbaapawerpaAFWEFAWJOAWRIErwearkaweapwej"
     for i := 0; i < b.N; i++ {
         NumJewelsInStonesByArr(J, S)
+    }
+}
+
+func BenchmarkLengthOfLongestSubstring(b *testing.B) {
+    s := "fweaoirjaoweryfawo"
+    for i := 0; i < b.N; i++ {
+        LengthOfLongestSubstring(s)
+    }
+}
+
+func BenchmarkLengthOfLongestSubstring2(b *testing.B) {
+    s := "fweaoirjaoweryfawo"
+    for i := 0; i < b.N; i++ {
+        LengthOfLongestSubstring2(s)
+    }
+}
+
+func BenchmarkLengthOfLongestSubstring3(b *testing.B) {
+    s := "fweaoirjaoweryfawo"
+    for i := 0; i < b.N; i++ {
+        LengthOfLongestSubstring3(s)
+    }
+}
+
+func BenchmarkLengthOfLongestSubstring4(b *testing.B) {
+    s := "fweaoirjaoweryfawo"
+    for i := 0; i < b.N; i++ {
+        LengthOfLongestSubstring4(s)
     }
 }

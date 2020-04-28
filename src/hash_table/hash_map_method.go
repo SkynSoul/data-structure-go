@@ -1,6 +1,7 @@
 package hash_table
 
 import (
+	"math"
 	"sort"
 	"strconv"
 )
@@ -342,4 +343,67 @@ func NumJewelsInStonesByArr(J string, S string) int {
 		}
 	}
 	return num
+}
+
+func LengthOfLongestSubstring(s string) int {
+	ret, preIdx := 0, 0
+	sMap := make(map[byte]int)
+	for i := 0; i < len(s); i++ {
+		if idx, ok := sMap[s[i]]; ok {
+			if ret < len(sMap) {
+				ret = len(sMap)
+			}
+			for j := preIdx; j < idx; j++ {
+				delete(sMap, s[j])
+			}
+			preIdx = idx + 1
+		}
+		sMap[s[i]] = i
+	}
+	if ret < len(sMap) {
+		ret = len(sMap)
+	}
+	return ret
+}
+
+func LengthOfLongestSubstring2(s string) int {
+	ret, preIdx := 0, 0
+	sMap := make(map[byte]int)
+	for i := 0; i < len(s); i++ {
+		if idx, ok := sMap[s[i]]; ok && idx >= preIdx {
+			ret = int(math.Max(float64(ret), float64(i - preIdx)))
+			preIdx = idx + 1
+		}
+		sMap[s[i]] = i
+	}
+	return int(math.Max(float64(ret), float64(len(s) - preIdx)))
+}
+
+func LengthOfLongestSubstring3(s string) int {
+	ret, preIdx := 0, 1
+	sArr := [256]int{}
+	for i := 0; i < len(s); i++ {
+		if sArr[s[i]] >= preIdx {
+			ret = int(math.Max(float64(ret), float64(i - preIdx + 1)))
+			preIdx = sArr[s[i]] + 1
+		}
+		sArr[s[i]] = i + 1
+	}
+	return int(math.Max(float64(ret), float64(len(s) - preIdx + 1)))
+}
+
+func LengthOfLongestSubstring4(s string) int {
+	ret, preIdx := 0, 0
+	sMap := make(map[byte]int)
+	for i := 0; i < len(s); i++ {
+		if idx, ok := sMap[s[i]]; ok {
+			ret = int(math.Max(float64(ret), float64(len(sMap))))
+			for j := preIdx; j < idx; j++ {
+				delete(sMap, s[j])
+			}
+			preIdx = idx + 1
+		}
+		sMap[s[i]] = i
+	}
+	return int(math.Max(float64(ret), float64(len(sMap))))
 }

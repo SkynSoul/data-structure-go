@@ -407,3 +407,106 @@ func LengthOfLongestSubstring4(s string) int {
 	}
 	return int(math.Max(float64(ret), float64(len(sMap))))
 }
+
+func FourSumCount(A []int, B []int, C []int, D []int) int {
+	sum := 0
+	sumMap1 := make(map[int][]int)
+	for i := 0; i < len(A); i++ {
+		for j := 0; j < len(B); j++ {
+			sum = A[i] + B[j]
+			if _, ok := sumMap1[sum]; ok {
+				sumMap1[sum] = append(sumMap1[sum], idxToInt(i, j))
+				continue
+			}
+			sumMap1[sum] = []int{idxToInt(i, j)}
+		}
+	}
+	sumMap2 := make(map[int][]int)
+	for i := 0; i < len(C); i++ {
+		for j := 0; j < len(D); j++ {
+			sum = C[i] + D[j]
+			if _, ok := sumMap2[sum]; ok {
+				sumMap2[sum] = append(sumMap2[sum], idxToInt(i, j))
+				continue
+			}
+			sumMap2[sum] = []int{idxToInt(i, j)}
+		}
+	}
+	count, otherKey := 0, 0
+	for key, val := range sumMap1 {
+		otherKey = 0 - key
+		if arr, ok := sumMap2[otherKey]; ok {
+			count = count + (len(val) * len(arr))
+		}
+	}
+	return count
+}
+
+func idxToInt(a int, b int) int {
+	return a * 500 + b
+}
+
+func FourSumCount2(A []int, B []int, C []int, D []int) int {
+	sum := 0
+	sumMap1 := make(map[int]int)
+	for i := 0; i < len(A); i++ {
+		for j := 0; j < len(B); j++ {
+			sum = A[i] + B[j]
+			if _, ok := sumMap1[sum]; ok {
+				sumMap1[sum] += 1
+				continue
+			}
+			sumMap1[sum] = 1
+		}
+	}
+	sumMap2 := make(map[int]int)
+	for i := 0; i < len(C); i++ {
+		for j := 0; j < len(D); j++ {
+			sum = C[i] + D[j]
+			if _, ok := sumMap2[sum]; ok {
+				sumMap2[sum] += 1
+				continue
+			}
+			sumMap2[sum] = 1
+		}
+	}
+	count, otherKey := 0, 0
+	for key, val := range sumMap1 {
+		otherKey = 0 - key
+		if val2, ok := sumMap2[otherKey]; ok {
+			count = count + val + val2
+		}
+	}
+	return count
+}
+
+func TopKFrequent(nums []int, k int) []int {
+	numMap := make(map[int]int)
+	for _, val := range nums {
+		if _, ok := numMap[val]; ok {
+			numMap[val] += 1
+			continue
+		}
+		numMap[val] = 1
+	}
+	dupMap := make(map[int][]int)
+	dupArr := make([]int, 0, len(numMap))
+	for num, dupNum := range numMap {
+		if _, ok := dupMap[dupNum]; ok {
+			dupMap[dupNum] = append(dupMap[dupNum], num)
+		} else {
+			dupArr = append(dupArr, dupNum)
+			dupMap[dupNum] = []int{num}
+		}
+	}
+	sort.Ints(dupArr)
+	ret := make([]int, 0, k)
+	for i := len(dupArr) - 1; i >= 0; i-- {
+		if k <= 0 {
+			return ret
+		}
+		ret = append(ret, dupMap[dupArr[i]]...)
+		k -= len(dupMap[dupArr[i]])
+	}
+	return ret
+}

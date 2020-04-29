@@ -264,6 +264,23 @@ func TestLengthOfLongestSubstring3(t *testing.T) {
     t.Logf("the length of longest sub string is %d", LengthOfLongestSubstring3(s))
 }
 
+func TestFourSumCount(t *testing.T) {
+   A := []int{1, 2}
+   B := []int{-2, -1}
+   C := []int{-1, 2}
+   D := []int{0, 2}
+   t.Logf("four sum count is %d", FourSumCount(A, B, C, D))
+}
+
+func TestTopKFrequent(t *testing.T) {
+    nums := []int{1, 1, 1, 2, 2, 3}
+    k := 2
+    t.Logf("nums: %v, k: %d, the ret: %v", nums, k, TopKFrequent(nums, k))
+    nums = []int{1}
+    k = 1
+    t.Logf("nums: %v, k: %d, the ret: %v", nums, k, TopKFrequent(nums, k))
+}
+
 func BenchmarkSingleNumber(b *testing.B) {
     nums := []int{4, 1, 2, 1, 2}
     for i := 0; i < b.N; i++ {
@@ -367,5 +384,25 @@ func BenchmarkLengthOfLongestSubstring4(b *testing.B) {
     s := "fweaoirjaoweryfawo"
     for i := 0; i < b.N; i++ {
         LengthOfLongestSubstring4(s)
+    }
+}
+
+func BenchmarkFourSumCount1(b *testing.B) {
+    A := []int{1, 2}
+    B := []int{-2, -1}
+    C := []int{-1, 2}
+    D := []int{0, 2}
+    for i := 0; i < b.N; i++ {
+        FourSumCount(A, B, C, D)
+    }
+}
+
+func BenchmarkFourSumCount2(b *testing.B) {
+    A := []int{1, 2}
+    B := []int{-2, -1}
+    C := []int{-1, 2}
+    D := []int{0, 2}
+    for i := 0; i < b.N; i++ {
+        FourSumCount2(A, B, C, D)
     }
 }
